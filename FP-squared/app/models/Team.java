@@ -1,4 +1,13 @@
 package models;
 
-public class Team {
+
+import play.db.ebean.Model;
+import javax.persistence.Entity;
+
+
+@Entity
+public class Team extends Model{
+
+	private String name;
+	private String[] members;
 }
