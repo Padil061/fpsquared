@@ -21,6 +21,14 @@ body > div{
   background-color: #fff;
   height:300px;
 }
+.user-info {
+  float: left;
+  margin: 110px 90px;
+  display: inline-block;
+}
+#submit-button {
+  margin-top: 25px;
+}
 .header .the-form{
   width: 350px;
   height: 350px;
@@ -49,7 +57,10 @@ body > div{
 }
 .footer{
   background-color: #000;
-  height:50px;
+  color:white;
+  height:100px;
+  text-align:center;
+  margin:0 auto;
 }
 
 #testimonials{

@@ -4,8 +4,15 @@
 
   <div class="top-menu">
   	<div class="content-container">
-  		<p>The menu</p>
-  	</div>
+	  <div class="collapse navbar-collapse" id="main-navigation">
+		  <ul class="nav navbar-nav navbar-left">
+			  <li><a href="">HOME</a></li>
+			  <li><a href="">LOGIN</a></li>
+			  <li><a href="">ABOUT</a></li>
+			  <li><a href="">CONTACT</a></li>
+		  </ul>
+	  </div>
+	</div>
   </div>
   <div class="header">
   	<div class="content-container">
@@ -16,7 +23,12 @@
   			<li>Point Four</li>
   		</ul>
   		<div class="the-form">
-  			Some Form
+				<div class="user-info">
+					<label>User Name: </label><input id="userName"  type="text">
+					<label>Password: </label><input  id="password" type="password">
+					<input type="button" id="submit-button" value="submit" placeholder="Create Account">
+				</div>
+			</form>
   		</div>
   	</div>
   </div>
@@ -59,7 +71,9 @@
   	</div>
   </div>
   <div class="footer">
-
+		  <div>
+			  Copyright &copy; 2015 by <a href=""></a>
+		  </div>
   </div>
 
 }

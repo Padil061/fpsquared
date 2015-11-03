@@ -8,9 +8,13 @@ scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
   javaJdbc,
+  javaCore,
   cache,
   javaWs,
-  evolutions
+  evolutions,
+  "mysql" % "mysql-connector-java" % "5.1.35",
+  "org.webjars" %% "webjars-play" % "2.4.0-1",
+  "org.webjars" % "bootstrap" % "3.3.4"
 )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
