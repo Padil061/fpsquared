@@ -1,7 +1,11 @@
 package models;
 
+import com.avaje.ebean.Model;
+
+import javax.persistence.Entity;
+
+@Entity
 public class Sprint {
-    private Long id;
-    private String name;
-    private Timeline timeline;
+    public String name;
+    public Timeline timeline;
 }
