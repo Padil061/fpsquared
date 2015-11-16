@@ -23,10 +23,11 @@
   			<li>Point Four</li>
   		</ul>
   		<div class="the-form">
+			<form action="@routes.Application.createUser()" method="post">
 				<div class="user-info">
-					<label>User Name: </label><input id="userName"  type="text">
-					<label>Password: </label><input  id="password" type="password">
-					<input type="button" id="submit-button" value="submit" placeholder="Create Account">
+					<label>User Name: </label><input id="userName"  type="text" name="userName">
+					<label>Password: </label><input  id="password" type="password" name="password">
+					<button>Create Account</button>
 				</div>
 			</form>
   		</div>

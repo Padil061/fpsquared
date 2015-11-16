@@ -3,10 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           @controllers.Application.index()
+
+# Create User Account
+
+POST    /create-account             @controllers.Application.createUser()
 
 # Web Jars reference
-GET     /webjars/*file              controllers.WebJarAssets.at(file)
+GET     /webjars/*file              @controllers.WebJarAssets.at(file)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file               @controllers.Assets.versioned(path="/public", file: Asset)
