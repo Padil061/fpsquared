@@ -91,4 +91,19 @@ body > div{
   font-size: 2em;
   text-align: center;
 }
+
+#mainImage {
+background-size: 100% 100%;
+max-height: 85%;
+max-width: 100%;
+}
+
+#IntroductionImage {
+background-size: 100% 100%;
+max-height: 100%;
+max-width: 80%;
+}
+
+.jumbotron {
+max-height:550px;
 }

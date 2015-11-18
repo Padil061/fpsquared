@@ -1,17 +1,21 @@
 @main("Welcome") {
 
-  <div id="landing-content">
-  	<div class="content-container">
-  		<div class="the-form">
-			<form action="@routes.Application.createUser()" method="post">
-				<div class="user-info">
-					<label>User Name: </label><input id="userName"  type="text" name="userName">
-					<label>Password: </label><input  id="password" type="password" name="password">
-					<button>Create Account</button>
-				</div>
-			</form>
-  		</div>
-  	</div>
-  </div>
+<div id="landing-content">
+  	<div class="jumbotron">
+		<img id="mainImage" src="@routes.Assets.versioned("images/fluid main.jpg")">
+	</div>
+	<div class="container">
+		  <div class="col-md-4">
+			<a href="#">
+				<img id="IntroductionImage" class="media-object" src="@routes.Assets.versioned("images/scrumImage.jpg")">
+			</a>
+		  </div>
+		<div class="col-md-8">
+			<h4 class="media-heading">Media heading</h4>
+			This is the Agile Managment Tool.
+		</div>
+	</div>
+</div>
+
 
 }
