@@ -17,9 +17,9 @@ body > div{
   padding: 15px 0;
   color: #fff;
 }
-.header{
+#landing-content{
   background-color: #fcf8e3;
-  height: 300px;
+  height: 560px;
 }
 .user-info {
   float: left;
@@ -29,12 +29,12 @@ body > div{
 #submit-button {
   margin-top: 25px;
 }
-.header .the-form{
+.the-form{
   width: 350px;
   height: 350px;
   position: absolute;
   right: 10px;
-  bottom: -10px;
+  margin-top:-25px;
   background-color: #f0ad4e;
 }
 .middle-bar{
@@ -90,41 +90,4 @@ body > div{
   font-size: 2em;
   text-align: center;
 }
-
-@media (max-width: 1020px) {
-  .content-container{
-    width: 720px;
-  }
-  .middle-bar .partners{
-    max-width: 360px;
-  }
-  .partners .partner{
-    font-size: 20px;
-    width: 100px;
-  }
-  .testimonial:last-child{
-    display: none;
-  }
-}
-@media (max-width: 740px) {
-  .content-container{
-    width: 320px;
-  }
-  .header{
-    background-color: #fff;
-    height:450px;
-  }
-  .header .the-form{
-    right: auto;
-    position: relative;
-    margin: 10px auto;
-    width: 300px;
-  }
-  .partners .partner{
-    font-size: 18px;
-    width: 85px;
-  }
-  .testimonial:nth-child(n+2){
-    display: none;
-  }
 }

@@ -1,79 +1,17 @@
-@(message: String)
+@main("Welcome") {
 
-@main("Welcome to FPsquared ") {
-
-  <div class="top-menu">
+  <div id="landing-content">
   	<div class="content-container">
-	  <div class="collapse navbar-collapse" id="main-navigation">
-		  <ul class="nav navbar-nav navbar-left">
-			  <li><a href="">HOME</a></li>
-			  <li><a href="">LOGIN</a></li>
-			  <li><a href="">ABOUT</a></li>
-			  <li><a href="">CONTACT</a></li>
-		  </ul>
-	  </div>
-	</div>
-  </div>
-  <div class="header">
-  	<div class="content-container">
-  		<ul class="points">
-  			<li>Point One</li>
-  			<li>Point Two</li>
-  			<li>Point Three</li>
-  			<li>Point Four</li>
-  		</ul>
   		<div class="the-form">
+			<form action="@routes.Application.createUser()" method="post">
 				<div class="user-info">
-					<label>User Name: </label><input id="userName"  type="text">
-					<label>Password: </label><input  id="password" type="password">
-					<input type="button" id="submit-button" value="submit" placeholder="Create Account">
+					<label>User Name: </label><input id="userName"  type="text" name="userName">
+					<label>Password: </label><input  id="password" type="password" name="password">
+					<button>Create Account</button>
 				</div>
 			</form>
   		</div>
   	</div>
-  </div>
-  <div class="middle-bar">
-  	<div class="content-container">
-  		<div class="partners">
-  			<div class="partner">Task</div>
-  			<div class="partner">Task</div>
-  			<div class="partner">Task</div>
-  			<div style="clear:both;"></div>
-  		</div>
-  	</div>
-  </div>
-  <div class="main-content">
-  	<div class="content-container">
-  		<div id="testimonials">
-  			<div class="testimonial">
-  				Story
-  			</div>
-  			<div class="testimonial">
-  				Story
-  			</div>
-  			<div class="testimonial">
-  				Story
-  			</div>
-  		</div>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  	</div>
-  </div>
-  <div class="footer">
-		  <div>
-			  Copyright &copy; 2015 by <a href=""></a>
-		  </div>
   </div>
 
 }

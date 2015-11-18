@@ -1,0 +1,68 @@
+@main("Welcome to Play") {
+
+<div class="top-menu">
+    <div class="content-container">
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="">HOME</a></li>
+                <li><a href="">LOGIN</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="content-container">
+        <ul class="points">
+            <li>Point One</li>
+            <li>Point Two</li>
+            <li>Point Three</li>
+            <li>Point Four</li>
+        </ul>
+        <div class="the-form">
+            <form action="@routes.Application.createUser()" method="post">
+                <div class="user-info">
+                    <label>User Name: </label><input id="userName"  type="text" name="userName">
+                    <label>Password: </label><input  id="password" type="password" name="password">
+                    <button>Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="middle-bar">
+    <div class="content-container">
+        <div class="partners">
+            <div class="partner">Task</div>
+            <div class="partner">Task</div>
+            <div class="partner">Task</div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <div class="content-container">
+        <div id="testimonials">
+            <div class="testimonial">
+                Story
+            </div>
+            <div class="testimonial">
+                Story
+            </div>
+            <div class="testimonial">
+                Story
+            </div>
+        </div>
+        <p>Lorem no ipsum</p>
+
+        <p>Lorem no ipsum</p>
+    </div>
+</div>
+<div class="footer">
+    <div>
+        Copyright &copy; 2015 by <a href=""></a>
+    </div>
+</div>
+
+}

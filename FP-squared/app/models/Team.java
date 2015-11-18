@@ -1,14 +1,28 @@
 package models;
 
-import play.db.ebean.Model;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import com.avaje.ebean.Model;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Team extends Model{
+public class Team extends Model {
+	@Id
+	@Column(name = "teamID")
+	private long id;
+
+	@Column(name = "name")
 	public String name;
 
-	@OneToMany
+	/**
+	 * Team.members to access
+	 */
+	@OneToMany(mappedBy = "team", cascade= CascadeType.ALL)
 	public List<Account> members;
+
+	/**
+	 * Team.stories to access
+	 */
+	@OneToMany(mappedBy = "team", cascade= CascadeType.ALL)
+	public List<Sprint> sprints;
 }
