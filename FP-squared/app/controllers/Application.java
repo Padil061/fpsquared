@@ -4,20 +4,17 @@ import models.Account;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.dashboard;
-import views.html.index;
-import views.html.login;
-import views.html.welcome;
+import views.html.*;
 
 public class Application extends Controller {
 
     public Result index() { return ok(index.render()); }
 
-    public Result login() {
+    public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
-        //session("connected", account.userName);
+        session("connected", account.userName);
 
-        return ok(login.render());
+        return ok(dashboard.render());
     }
 
     public Result logout() {
@@ -39,9 +36,13 @@ public class Application extends Controller {
         }
     }
 
+    public Result login() { return ok(login.render()); }
+
     public Result dashboard() {
         return ok(dashboard.render());
     }
+
+    public Result sprintInfo() { return ok(sprint.render()); }
 
     public Result createUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();

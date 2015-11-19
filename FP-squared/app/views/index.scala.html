@@ -1,6 +1,11 @@
 @main("Welcome") {
 
 <div id="landing-content">
+    <div id="front-heading">
+        <h4>Welcome</h4>
+        This is the Agile Managment Tool.
+    </div>
+
   	<div class="jumbotron">
 		<img id="mainImage" src="@routes.Assets.versioned("images/fluid main.jpg")">
 	</div>
@@ -11,10 +16,8 @@
 			</a>
 		  </div>
 		<div class="col-md-8">
-			<h4 class="media-heading">Media heading</h4>
-			This is the Agile Managment Tool.
 			<div class="the-form">
-				<h1 style="text-align:center;">Welcome!</h1>
+				<h1 style="text-align:center;">Sign Up!</h1>
 				<form action="@routes.Application.createUser()" method="post">
 					<div class="user-info">
 						<label>User Name: </label><input id="userName"  type="text" name="userName">

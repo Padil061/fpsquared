@@ -3,11 +3,11 @@
 <div id="login-body">
     <div id="login-form">
         <h1 style="text-align:center;">Login</h1>
-        <form action="@routes.Application.login()" method="get">
+        <form action="@routes.Application.verifyUser()" method="post">
             <div class="user-info">
                 <label>Enter User Name: </label><input class="userName"  type="text" name="userName">
                 <label>Enter Password: </label><input  class="password" type="password" name="password">
-                <button class="submit-button" type="submit">Create Account</button>
+                <button class="submit-button" type="submit">Go to dashboard</button>
             </div>
         </form>
     </div>

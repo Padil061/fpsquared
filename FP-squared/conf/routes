@@ -8,6 +8,9 @@ GET     /                           @controllers.Application.index()
 # Login page
 GET    /login                       @controllers.Application.login()
 
+# Check user credentials
+POST    /login-verify                @controllers.Application.verifyUser()
+
 # Create User Account
 POST    /create-account             @controllers.Application.createUser()
 
@@ -16,6 +19,9 @@ GET     /welcome                    @controllers.Application.welcome(userName : 
 
 # See User Info
 GET     /dashboard                  @controllers.Application.dashboard()
+
+# Sprint information
+GET     /sprint-info                @controllers.Application.sprintInfo()
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)
