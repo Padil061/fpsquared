@@ -23,10 +23,10 @@ body > div{
 }
 .user-info {
   float: left;
-  margin: 110px 90px;
+  margin: 50px 100px;
   display: inline-block;
 }
-#submit-button {
+.submit-button {
   margin-top: 25px;
 }
 .the-form{
@@ -91,4 +91,37 @@ body > div{
   font-size: 2em;
   text-align: center;
 }
+
+/*
+    Thank you view
+*/
+
+#greeting {
+    text-align:center;
+    height:560px;
+}
+
+/*
+    Login view
+*/
+
+#login-body {
+  height:560px;
+}
+#login-form {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    right: 450px;
+    margin-top: 40px;
+    background-color: #f0ad4e;
+}
+
+/*
+    Dashboard view
+*/
+
+#prompt {
+text-align:center;
+height:250px;
 }

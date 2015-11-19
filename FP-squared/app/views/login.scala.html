@@ -1,0 +1,16 @@
+@main("Login") {
+
+<div id="login-body">
+    <div id="login-form">
+        <h1 style="text-align:center;">Login</h1>
+        <form action="@routes.Application.login()" method="get">
+            <div class="user-info">
+                <label>Enter User Name: </label><input class="userName"  type="text" name="userName">
+                <label>Enter Password: </label><input  class="password" type="password" name="password">
+                <button class="submit-button" type="submit">Create Account</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+}

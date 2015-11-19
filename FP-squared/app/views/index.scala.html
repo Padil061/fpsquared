@@ -3,11 +3,12 @@
   <div id="landing-content">
   	<div class="content-container">
   		<div class="the-form">
+			<h1 style="text-align:center;">Welcome!</h1>
 			<form action="@routes.Application.createUser()" method="post">
 				<div class="user-info">
 					<label>User Name: </label><input id="userName"  type="text" name="userName">
 					<label>Password: </label><input  id="password" type="password" name="password">
-					<button>Create Account</button>
+					<button class="submit-button" type="submit">Create Account</button>
 				</div>
 			</form>
   		</div>

@@ -5,14 +5,17 @@
 # Home page
 GET     /                           @controllers.Application.index()
 
+# Login page
+GET    /login                       @controllers.Application.login()
+
 # Create User Account
 POST    /create-account             @controllers.Application.createUser()
 
 # Welcome New User
-GET     /welcome                    @controllers.Application.welcome()
+GET     /welcome                    @controllers.Application.welcome(userName : String)
 
 # See User Info
-GET     /dashboard                  @controllers.Application.dashboard(id : Long)
+GET     /dashboard                  @controllers.Application.dashboard()
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)
