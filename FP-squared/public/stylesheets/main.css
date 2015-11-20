@@ -6,11 +6,17 @@ body{
 body > div{
   padding-top: 20px;
 }
+#front-heading {
+  text-align:center;
+}
 .content-container{
   width: 1000px;
   height: 100%;
   margin: 0 auto;
   position: relative;
+}
+.navbar {
+  margin-bottom:0;
 }
 .top-menu{
   background-color: #dff0d8;
@@ -23,10 +29,10 @@ body > div{
 }
 .user-info {
   float: left;
-  margin: 110px 90px;
+  margin: 50px 100px;
   display: inline-block;
 }
-#submit-button {
+.submit-button {
   margin-top: 25px;
 }
 .the-form{
@@ -39,21 +45,26 @@ body > div{
 }
 .middle-bar{
   background-color: #E0F0D8;
-  padding: 30px 0;
+  height:560px;
 }
-.middle-bar .partners{
+.middle-bar #stories{
   max-width: 650px;
   text-align: center;
 }
-.partners .partner{
+.story {
+    width: 525px;
+    border: 1px solid blue;
+}
+.story .task{
   font-size: 25px;
   width: 120px;
   display: inline-block;
   border: 1px solid black;
+  margin: 50px 195px;
 }
 .main-content{
   background-color: #ddd;
-  height:600px;
+  height:325px;
 }
 .footer{
   background-color: #000;
@@ -63,7 +74,7 @@ body > div{
   margin:0 auto;
 }
 
-#testimonials{
+#sprints{
   padding: 0;
   margin: 0;
   list-style: none;
@@ -78,7 +89,7 @@ body > div{
   justify-content: space-around;
 }
 
-.testimonial{
+.sprint{
   background: tomato;
   padding: 5px;
   width: 200px;
@@ -90,6 +101,40 @@ body > div{
   font-weight: bold;
   font-size: 2em;
   text-align: center;
+}
+
+/*
+    Thank you view
+*/
+
+#greeting {
+    text-align:center;
+    height:560px;
+}
+
+/*
+    Login view
+*/
+
+#login-body {
+  height:560px;
+}
+#login-form {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    right: 450px;
+    margin-top: 40px;
+    background-color: #f0ad4e;
+}
+
+/*
+    Dashboard view
+*/
+
+#prompt {
+text-align:center;
+height:250px;
 }
 
 #mainImage {
