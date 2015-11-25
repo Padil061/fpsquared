@@ -10,6 +10,13 @@ public class Application extends Controller {
 
     public Result index() { return ok(index.render()); }
 
+    public Result createUser() {
+        Account account = Form.form(Account.class).bindFromRequest().get();
+        account.save();
+        session("connected", account.userName);
+        return redirect(routes.Application.welcome(account.userName));
+    }
+
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
@@ -21,10 +28,7 @@ public class Application extends Controller {
         session().clear();
         flash("success", "You've logged out successfully");
         return redirect(routes.Application.login());
-    }
 
-    public Result welcome(String userName) {
-        return ok(welcome.render(userName));
     }
 
     public static String authenticateUser() {
@@ -44,11 +48,8 @@ public class Application extends Controller {
 
     public Result sprintInfo() { return ok(sprint.render()); }
 
-    public Result createUser() {
-        Account account = Form.form(Account.class).bindFromRequest().get();
-        account.save();
-        session("connected", account.userName);
-        return redirect(routes.Application.welcome(account.userName));
+    public Result welcome(String userName) {
+        return ok(welcome.render(userName));
     }
 
 }
