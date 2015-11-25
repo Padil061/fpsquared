@@ -7,7 +7,7 @@
             <a class="navbar-brand" href="#">FP-Squared</a>
             <ul class="nav navbar-nav">
                 <li><a href="@routes.Application.index()">HOME</a></li>
-                <li><a href="@routes.Application.login()">LOGIN</a></li>
+                @if(session.containsKey("connected")) {
                 <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
                 <li class="dropdown">
                         <button style="margin-top: 7px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
@@ -20,6 +20,9 @@
                             <li><a href="#">Separated link</a></li>
                         </ul>
                 </li>
+                } else {
+                <li><a href="@routes.Application.login()">LOGIN</a></li>
+                }
             </ul>
             <form action="@routes.Application.verifyUser()" method="post" class="navbar-form navbar-right">
                 <div class="form-group">
