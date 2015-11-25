@@ -6,6 +6,9 @@ body{
 body > div{
   padding-top: 20px;
 }
+label {
+  display:inline;
+}
 #front-heading {
   text-align:center;
 }
@@ -29,22 +32,34 @@ height: 560px;
 }
 .user-info {
 float: left;
-margin: 10px 10px;
+margin: 30px 10px;
 display: inline-block;
+}
+#userName {
+  margin-bottom:25px;
 }
 .submit-button {
   margin-top: 25px;
+  background-color:rgb(210, 27, 49);
+}
+.media-body {
+  color:white;
 }
 .the-form{
+color:white;
 width: 250px;
-height: 250px;
+height: 350px;
 position: absolute;
 border-style: inset;
-left: 900px;
+left: 965px;
 background-color: #8bc7ff;
 border: 3px solid black;
 border-radius: 25px;
-bottom: 100px;
+bottom: 175px;
+}
+#umbrella {
+  height:450px;
+  width:85%;
 }
 .middle-bar{
   background-color: #E0F0D8;
