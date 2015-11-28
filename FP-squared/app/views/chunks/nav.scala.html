@@ -1,3 +1,4 @@
+@import helper._
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -12,13 +13,34 @@
                 <li class="dropdown">
                         <button style="margin-top: 7px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
                         <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                        <ul id="teamMenu" class="dropdown-menu" role="menu">
+                            <li><a href="#">Team_Name</a></li>
+                            <li><a href="#">Team_Name</a></li>
+                            <li><a href="#">Team_Name</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a data-remodal-target="modal">Create a Team</a></li>
+                            <li><a href="#">Join a Team</a></li>
                         </ul>
+
+                        <!-- This is the interface for creating a team -->
+                        <div class="remodal-bg">
+                            <div class="remodal" data-remodal-id="modal">
+                                <button data-remodal-action="close" class="remodal-close"></button>
+                                @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
+                                <h1>Team Creation</h1>
+                                <p>
+                                    Create a Team so you can start your Sprints! It's as simple as just picking your team name!
+                                </p>
+
+                                    <div class="form-group">
+                                        <input id="teamName" type="text" placeholder="Team Name" name="name">
+                                    </div>
+                                    <br>
+                                    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                                    <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                                }
+                            </div>
+                        </div>
                 </li>
                 } else {
                 <li><a href="@routes.Application.login()">LOGIN</a></li>
@@ -27,7 +49,7 @@
             <form action="@routes.Application.verifyUser()" method="post" class="navbar-form navbar-right">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="User Name" name="userName">
-                    <input type="text" class="form-control" placeholder="Password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
                 </div>
                 <button type="submit" class="btn btn-default">Login</button>
             </form>

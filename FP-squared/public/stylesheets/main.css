@@ -149,6 +149,11 @@ bottom: 175px;
     Dashboard view
 */
 
+#teamName {
+  margin:10px 0;
+  width:500px;
+}
+
 #prompt {
 text-align:center;
 height:250px;
@@ -169,3 +174,5 @@ max-width: 80%;
 .jumbotron {
 max-height:550px;
 }
+
+

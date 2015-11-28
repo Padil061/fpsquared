@@ -25,4 +25,8 @@ public class Team extends Model {
 	 */
 	@OneToMany(mappedBy = "team", cascade= CascadeType.ALL)
 	public List<Sprint> sprints;
+
+	public Long getID() {
+		return this.id;
+	}
 }

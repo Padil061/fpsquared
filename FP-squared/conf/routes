@@ -3,22 +3,28 @@
 # ~~~~
 
 # Home page
-GET     /                           @controllers.Application.index()
+GET    /                            @controllers.Application.index()
 
 # Login page
 GET    /login                       @controllers.Application.login()
 
 # Check user credentials
-POST    /login-verify                @controllers.Application.verifyUser()
+POST    /login-verify               @controllers.Application.verifyUser()
 
 # Create User Account
 POST    /create-account             @controllers.Application.createUser()
 
+# Create Team for all Users to try to join
+POST    /create-team                @controllers.Application.createTeam()
+
 # Welcome New User
 GET     /welcome                    @controllers.Application.welcome(userName : String)
 
-# See User Info
+# See User Dashboard
 GET     /dashboard                  @controllers.Application.dashboard()
+
+# Show Team dashboard view with Sprints
+GET     /dashboard/team/:teamID     @controllers.Application.teamDashboard(teamID : Long)
 
 # Sprint information
 GET     /sprint-info                @controllers.Application.sprintInfo()

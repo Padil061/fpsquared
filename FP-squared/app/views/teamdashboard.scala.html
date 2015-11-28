@@ -1,10 +1,14 @@
-@main("User Dashboard") {
+@(teamID : Long)
+
+@main("Team Dashboard") {
 
 <div id="prompt">
-@Application.authenticateUser()
+    @Application.authenticateUser()
 </div>
 <div class="main-content">
     <div class="content-container">
+
+        <h3>Your new team!</h3>
 
         <div id="sprints">
             <a href="@routes.Application.sprintInfo()">

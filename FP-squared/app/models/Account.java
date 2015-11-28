@@ -9,7 +9,7 @@ public class Account extends Model {
 
     @Id
     @Column(name = "accountID")
-    private long id;
+    private Long id;
 
     @Column(name = "userName")
     public String userName;

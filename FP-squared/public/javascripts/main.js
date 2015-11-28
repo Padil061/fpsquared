@@ -5,3 +5,8 @@ $('.sprint').click(function() {
 $('.task').click(function() {
     alert('From here, you should be able to comment on a task / assign a user to a task / delete a task');
 });
+
+$('#createTeam').click(function() {
+    $('#teamForm').submit();
+}) ;
+
