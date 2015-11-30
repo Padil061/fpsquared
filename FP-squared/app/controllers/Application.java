@@ -22,10 +22,18 @@ public class Application extends Controller {
         Team team = Form.form(Team.class).bindFromRequest().get();
         team.save();
 
-        Long teamID = team.getID();
+        //Long teamID = team.getID();
 
-        return redirect(routes.Application.teamDashboard(teamID));
+        return redirect(routes.Application.dashboard());
     }
+
+//    public Result getTeamInfo() {
+        // get team ID so you can find the Sprints & Members of team to display
+
+        // Long teamID = team.getID();
+
+//        return redirect(routes.Application.teamDashboard(/* teamID, team.sprints, team.members */));
+//    }
 
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();

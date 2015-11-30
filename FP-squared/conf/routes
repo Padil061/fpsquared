@@ -3,31 +3,49 @@
 # ~~~~
 
 # Home page
-GET    /                            @controllers.Application.index()
+GET    /                           @controllers.Application.index()
 
 # Login page
-GET    /login                       @controllers.Application.login()
+GET    /login                      @controllers.Application.login()
 
 # Login page
-GET    /logout                       @controllers.Application.logout()
+GET    /logout                     @controllers.Application.logout()
 
 # Check user credentials
-POST    /login-verify               @controllers.Application.verifyUser()
+POST    /login-verify              @controllers.Application.verifyUser()
 
 # Create User Account
-POST    /create-account             @controllers.Application.createUser()
+POST    /create-account            @controllers.Application.createUser()
 
 # Create Team for all Users to try to join
-POST    /create-team                @controllers.Application.createTeam()
+POST    /create-team               @controllers.Application.createTeam()
+
+# Create Sprint which is associated with a Team
+#POST    /create-sprint             @controllers.Application.createSprint()
+
+# Create Story which is associated with a Sprint
+#POST    /create-story              @controllers.Application.createStory()
+
+# Create Task which is associated with a Story
+#POST    /create-task               @controllers.Application.createTask()
+
+# Add a comment to a task
+#POST    /add-comment               @controllers.Application.addComment()
+
+# Add a checklist item to a task
+#POST    /add-checklistitem         @controllers.Application.addChecklistitem()
 
 # Welcome New User
-GET     /welcome                    @controllers.Application.welcome(userName : String)
+GET     /welcome                   @controllers.Application.welcome(userName : String)
 
 # See User Dashboard
-GET     /dashboard                  @controllers.Application.dashboard()
+GET     /dashboard                 @controllers.Application.dashboard()
 
-# Show Team dashboard view with Sprints
-GET     /dashboard/team/:teamID     @controllers.Application.teamDashboard(teamID : Long)
+# Show Team dashboard view with Sprints & Members of team
+GET     /dashboard/team/:teamID    @controllers.Application.teamDashboard(teamID : Long)
+
+# Show Sprint information that will display Stories & Tasks inside of stories
+#GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
 GET     /sprint-info                @controllers.Application.sprintInfo()
