@@ -1,6 +1,6 @@
 package models;
 
-import com.avaje.ebean.*;
+import com.avaje.ebean.Model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,5 +30,5 @@ public class Team extends Model {
 		return this.id;
 	}
 
-	public static Finder<Long, Team> find = new Finder<Long,Team>(Team.class);
+	public static Model.Finder<Long, Team> find = new Model.Finder<Long, Team>(Team.class);
 }
