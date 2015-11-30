@@ -1,10 +1,9 @@
 @import helper._
 
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <ul class="container-fluid">
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div>
             <a class="navbar-brand" href="#">FP-Squared</a>
             <ul class="nav navbar-nav">
                 <li><a href="@routes.Application.index()">HOME</a></li>
@@ -42,17 +41,23 @@
                             </div>
                         </div>
                 </li>
+                </ul>
+                <form action="@routes.Application.logout()" method="get" class="navbar-form navbar-right">
+                    <button type="submit" class="btn btn-default">Logout</button>
+                </form>
+
                 } else {
                 <li><a href="@routes.Application.login()">LOGIN</a></li>
+                </ul>
+                <form action="@routes.Application.verifyUser()" method="post" class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="User Name" name="userName">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Login</button>
+                </form>
                 }
-            </ul>
-            <form action="@routes.Application.verifyUser()" method="post" class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="User Name" name="userName">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                </div>
-                <button type="submit" class="btn btn-default">Login</button>
-            </form>
+
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
