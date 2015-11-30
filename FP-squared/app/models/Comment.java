@@ -17,7 +17,7 @@ public class Comment extends Model {
     public String text;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    Task task;
+    public Task task;
 
     public static Model.Finder<Long, Comment> find = new Model.Finder<Long, Comment>(Comment.class);
 }

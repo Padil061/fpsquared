@@ -35,7 +35,7 @@ public class Sprint extends Model {
     private List<Story> stories;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    Team team;
+    public Team team;
 
     public static Model.Finder<Long, Sprint> find = new Model.Finder<Long, Sprint>(Sprint.class);
 }

@@ -34,7 +34,7 @@ public class Task extends Model {
     public List<ChecklistItem> checklistItems;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    Story story;
+    public Story story;
 
     public static Model.Finder<Long, Task> find = new Model.Finder<Long, Task>(Task.class);
 }

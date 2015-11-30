@@ -21,7 +21,7 @@ public class Account extends Model {
     public String password;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    Team team;
+    public Team team;
 
     public static Model.Finder<Long, Account> find = new Model.Finder<Long, Account>(Account.class);
 }

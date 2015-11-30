@@ -26,7 +26,7 @@ public class Story {
     public Date end;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    Sprint sprint;
+    public Sprint sprint;
 
     /**
      *  Story.tasks to access
