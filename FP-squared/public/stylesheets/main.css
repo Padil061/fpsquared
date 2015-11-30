@@ -7,7 +7,7 @@ body > div{
   padding-top: 20px;
 }
 label {
-  display:inline;
+  display:block;
 }
 #front-heading {
   text-align:center;
@@ -109,6 +109,34 @@ bottom: 175px;
 
 .sprint{
   background: tomato;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 10px;
+  line-height: 150px;
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+#teams {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.team {
+  background: antiquewhite;
   padding: 5px;
   width: 200px;
   height: 150px;

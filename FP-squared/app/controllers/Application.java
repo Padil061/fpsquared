@@ -1,6 +1,7 @@
 package controllers;
 
-import models.*;
+import models.Account;
+import models.Team;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
