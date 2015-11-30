@@ -30,5 +30,5 @@ public class Team extends Model {
 		return this.id;
 	}
 
-	public static Model.Finder<Long, Team> find = new Model.Finder<Long,Team>(Team.class);
+	public static Model.Finder<Long, Team> find = new Model.Finder<Long, Team>(Team.class);
 }
