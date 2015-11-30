@@ -29,4 +29,6 @@ public class Team extends Model {
 	public Long getID() {
 		return this.id;
 	}
+
+	public static Finder<Long, Team> find = new Finder<Long,Team>(Team.class);
 }
