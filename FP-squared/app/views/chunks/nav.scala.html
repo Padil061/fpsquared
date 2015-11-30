@@ -45,7 +45,7 @@
                         <div class="remodal-bg">
                             <div class="remodal" data-remodal-id="teamJoinModal">
                                 <button data-remodal-action="close" class="remodal-close"></button>
-                                @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
+                                @helper.form(action = routes.Application.joinTeam, 'id -> "joinForm") {
                                 <h1>Join a team</h1>
                                 <p>
                                     Click on the dropdown to see all the teams you can join!
@@ -53,8 +53,10 @@
 
                                 <div class="form-group">
                                     <!-- All possible teams to join -->
-                                    <select>
-                                        @{val teams = models.Team.find.all()}
+                                    <select name="name">
+                                        @for(team <- Team.find.all()) {
+                                        <option id="team_@team.getId()">@team.name</option>
+                                        }
                                     </select>
                                 </div>
                                 <br>

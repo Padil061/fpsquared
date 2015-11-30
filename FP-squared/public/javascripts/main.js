@@ -17,9 +17,10 @@ $('.task').click(function() {
 });
 
 $('#createTeam').click(function(e) {
-    if($('#teamName').val().length > 0)
         $('#teamForm').submit();
+});
 
-    return false;
+$('#joinTeam').click(function(e) {
+        $('#joinForm').submit();
 });
 

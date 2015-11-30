@@ -29,4 +29,8 @@ public class Team extends Model {
 	public List<Sprint> sprints;
 
 	public static Model.Finder<Long, Team> find = new Model.Finder<Long, Team>(Team.class);
+
+	public long getId() {
+		return id;
+	}
 }
