@@ -58,6 +58,8 @@ public class Application extends Controller {
         }
     }
 
+    // These are all the views that will get rendered via controllers
+
     public Result login() { return ok(login.render()); }
 
     public Result dashboard() { return ok(dashboard.render()); }
