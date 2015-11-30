@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,9 +13,11 @@ public class Task extends Model {
     @Column( name = "taskID")
     private long id;
 
+    @Constraints.Required
     @Column(name = "name")
     public String name;
 
+    @Constraints.Required
     @Column(name = "status")
     public String status;
 
@@ -32,4 +35,6 @@ public class Task extends Model {
 
     @ManyToOne(cascade= CascadeType.ALL)
     Story story;
+
+    public static Model.Finder<Long, Task> find = new Model.Finder<Long, Task>(Task.class);
 }

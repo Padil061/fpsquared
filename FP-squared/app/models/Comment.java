@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.data.validation.Constraints;
 
 import javax.persistence.*;
 
@@ -11,9 +12,12 @@ public class Comment extends Model {
     @Column( name = "commentID")
     private long id;
 
+    @Constraints.Required
     @Column(name = "text")
     public String text;
 
     @ManyToOne(cascade = CascadeType.ALL)
     Task task;
+
+    public static Model.Finder<Long, Comment> find = new Model.Finder<Long, Comment>(Comment.class);
 }

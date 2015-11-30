@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Team extends Model {
 	@Column(name = "teamID")
 	private long id;
 
+	@Constraints.Required
 	@Column(name = "name")
 	public String name;
 
@@ -25,10 +27,6 @@ public class Team extends Model {
 	 */
 	@OneToMany(mappedBy = "team", cascade= CascadeType.ALL)
 	public List<Sprint> sprints;
-
-	public Long getID() {
-		return this.id;
-	}
 
 	public static Model.Finder<Long, Team> find = new Model.Finder<Long, Team>(Team.class);
 }
