@@ -18,7 +18,7 @@
                             <li><a href="#">Team_Name</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a data-remodal-target="teamCreationModal">Create a Team</a></li>
-                            <li><a href="#">Join a Team</a></li>
+                            <li><a data-remodal-target="teamJoinModal">Join a Team</a></li>
                         </ul>
 
                         <!-- This is the interface for creating a team -->
@@ -37,6 +37,29 @@
                                     <br>
                                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
                                     <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- This is the interface for joining a team -->
+                        <div class="remodal-bg">
+                            <div class="remodal" data-remodal-id="teamJoinModal">
+                                <button data-remodal-action="close" class="remodal-close"></button>
+                                @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
+                                <h1>Join a team</h1>
+                                <p>
+                                    Click on the dropdown to see all the teams you can join!
+                                </p>
+
+                                <div class="form-group">
+                                    <!-- All possible teams to join -->
+                                    <select>
+
+                                    </select>
+                                </div>
+                                <br>
+                                <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                                <button id="joinTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Join Team</button>
                                 }
                             </div>
                         </div>
