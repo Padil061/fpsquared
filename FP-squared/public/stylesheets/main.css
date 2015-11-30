@@ -9,6 +9,9 @@ body > div{
 label {
   display:block;
 }
+input {
+  color:black;
+}
 #front-heading {
   text-align:center;
 }
