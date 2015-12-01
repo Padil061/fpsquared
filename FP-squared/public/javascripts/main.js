@@ -7,7 +7,8 @@ $( document ).ready(function() {
         }
     });
 
-    $(".sidebar.right").sidebar({side: "right"});
+    // Sidebar for the dashboard menu (reference : https://github.com/jillix/jQuery-sidebar)
+    $(".sidebar.right").sidebar({speed: 400}).trigger("sidebar:open");
 });
 
 $('.sprint').click(function() {
@@ -26,4 +27,6 @@ $('#joinTeam').click(function(e) {
         $('#joinForm').submit();
 });
 
-$(".sidebar.right").trigger("sidebar:toggle")
+$('#menuBar').click(function(e) {
+       // $(".sidebar.right").trigger("sidebar:toggle");
+});
