@@ -6,6 +6,8 @@ $( document ).ready(function() {
             }
         }
     });
+
+    $(".sidebar.right").sidebar({side: "right"});
 });
 
 $('.sprint').click(function() {
@@ -23,3 +25,4 @@ $('#createTeam').click(function(e) {
     return false;
 });
 
+$(".sidebar.right").trigger("sidebar:toggle")

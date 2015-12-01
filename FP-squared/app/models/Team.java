@@ -28,5 +28,7 @@ public class Team extends Model {
 	@OneToMany(mappedBy = "team", cascade= CascadeType.ALL)
 	public List<Sprint> sprints;
 
+
+
 	public static Model.Finder<Long, Team> find = new Model.Finder<Long, Team>(Team.class);
 }

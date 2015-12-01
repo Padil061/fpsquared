@@ -24,6 +24,10 @@ input {
 .navbar {
   margin-bottom:0;
 }
+#menuBar {
+  margin-right:15px;
+  float:right;
+}
 .top-menu{
   background-color: #dff0d8;
   padding: 15px 0;
@@ -187,7 +191,7 @@ bottom: 175px;
 
 #prompt {
 text-align:center;
-height:250px;
+margin: 130px 0;
 }
 
 #mainImage {
@@ -207,3 +211,45 @@ max-height:550px;
 }
 
 
+/* Sidebars */
+.sidebar.left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 270px;
+    background: #448AFF;
+}
+
+.sidebar.right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 270px;
+    background: #448AFF;
+}
+
+.sidebar.bottom {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 270px;
+    background: #03A9F4;
+}
+
+.sidebar.top {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 270px;
+    background: #03A9F4;
+}
+
+.sidebars > .sidebar {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
+    position: fixed;
+    color: white;
+    padding: 30px;
+    font-size: 2em;
+    text-align: center;
+}

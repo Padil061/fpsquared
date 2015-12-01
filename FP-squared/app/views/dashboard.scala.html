@@ -1,5 +1,11 @@
 @main("User Dashboard") {
 
+<div id="menuBar">
+    <a href="#" class="btn btn-primary" data-action="toggle" data-side="right">
+        <span class="glyphicon glyphicon-chevron-left">Show Menu</span>
+    </a>
+</div>
+
 <div id="prompt">
 @Application.authenticateUser()
 </div>
@@ -27,4 +33,10 @@
     </div>
 </div>
 
+<div class="sidebars">
+    <div class="sidebar left">Left</div>
+    <div class="dashboard">Right</div>
+    <div class="sidebar top">Top</div>
+    <div class="sidebar bottom">Bottom</div>
+</div>
 }
