@@ -16,7 +16,7 @@
             <!-- Goes to a specific team dashboard -->
             <a href="#">
                 <div class="team">
-                    Team_Name
+                    @{Account.find.where().eq("userName", session().get("connected")).findUnique().team.name}
                 </div>
             </a>
             <a href="#">

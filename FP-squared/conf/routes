@@ -20,6 +20,9 @@ POST    /create-account            @controllers.Application.createUser()
 # Create Team for all Users to try to join
 POST    /create-team               @controllers.Application.createTeam()
 
+# Join a team
+POST    /join-team              @controllers.Application.joinTeam()
+
 # Create Sprint which is associated with a Team
 #POST    /create-sprint             @controllers.Application.createSprint()
 

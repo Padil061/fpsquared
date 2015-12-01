@@ -1,5 +1,6 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
 import models.Account;
 import models.Team;
 import play.data.Form;
@@ -28,7 +29,7 @@ public class Application extends Controller {
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
-
+        System.out.println(account.userName);
         return redirect(routes.Application.dashboard());
     }
 
@@ -48,7 +49,25 @@ public class Application extends Controller {
         }
     }
 
-    // These are all the views that will get rendered via controllers
+    public Result joinTeam() {
+        Team team = Form.form(Team.class).bindFromRequest().get();
+        Ebean.beginTransaction();
+        try {
+            team = Team.find.where().eq("name", team.name).findUnique();
+            Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+            account.team = team;
+
+            account.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        String userName = session().get("connected");
+
+        return redirect(routes.Application.teamDashboard(team.getId()));
+    }
 
     public Result login() { return ok(login.render()); }
 
