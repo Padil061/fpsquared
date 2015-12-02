@@ -169,15 +169,19 @@ bottom: 175px;
 */
 
 #login-body {
-  height:560px;
+height: 560px;
+background-color: rgb(62, 86, 255);
 }
+
 #login-form {
-    width: 350px;
-    height: 350px;
-    position: absolute;
-    right: 450px;
-    margin-top: 40px;
-    background-color: #f0ad4e;
+  width: 250px;
+  height: 300px;
+  position: absolute;
+  right: 50px;
+  margin-top: 40px;
+  background-color: #f0e646;
+  border-radius: 25px;
+  border: 10px;
 }
 
 /*
