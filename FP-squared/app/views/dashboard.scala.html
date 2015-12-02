@@ -16,7 +16,13 @@
             <!-- Goes to a specific team dashboard -->
             <a href="#">
                 <div class="team">
-                    @{Account.find.where().eq("userName", session().get("connected")).findUnique().team.name}
+                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                        @if(account.team != null) {
+                            @account.team.name
+                        } else {
+                            Team_Name
+                        }
+                    }
                 </div>
             </a>
             <a href="#">
