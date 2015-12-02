@@ -27,6 +27,10 @@ $('#joinTeam').click(function(e) {
         $('#joinForm').submit();
 });
 
+$('#createSprint').click(function(e) {
+        $('#sprintForm').submit();
+});
+
 $('#menuBar').click(function(e) {
        // $(".sidebar.right").trigger("sidebar:toggle");
 });

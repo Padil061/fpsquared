@@ -18,15 +18,18 @@ public class Sprint extends Model {
     @Column( name = "name")
     public String name;
 
-    @Formats.DateTime(pattern="dd/MM/yyyy")
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
     @Constraints.Required
     @Column( name = "start")
     public Date start;
 
-    @Formats.DateTime(pattern="dd/MM/yyyy")
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
     @Constraints.Required
     @Column( name = "end")
     public Date end;
+
+    @Column( name = "finished")
+    public boolean finished;
 
     /**
      * Sprint.stories to access
