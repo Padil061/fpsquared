@@ -24,7 +24,7 @@ POST    /create-team               @controllers.Application.createTeam()
 POST    /join-team              @controllers.Application.joinTeam()
 
 # Create Sprint which is associated with a Team
-#POST    /create-sprint             @controllers.Application.createSprint()
+POST    /create-sprint             @controllers.Application.createSprint()
 
 # Create Story which is associated with a Sprint
 #POST    /create-story              @controllers.Application.createStory()

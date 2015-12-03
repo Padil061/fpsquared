@@ -10,13 +10,9 @@
                 @if(session.containsKey("connected")) {
                 <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
                 <li class="dropdown">
-                        <button style="margin-top: 7px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
+                        <button style="margin-top: 7px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Team
                         <span class="caret"></span></button>
                         <ul id="teamMenu" class="dropdown-menu" role="menu">
-                            <li><a href="#">Team_Name</a></li>
-                            <li><a href="#">Team_Name</a></li>
-                            <li><a href="#">Team_Name</a></li>
-                            <li role="separator" class="divider"></li>
                             <li><a data-remodal-target="teamCreationModal">Create a Team</a></li>
                             <li><a data-remodal-target="teamJoinModal">Join a Team</a></li>
                         </ul>
@@ -65,6 +61,41 @@
                                 }
                             </div>
                         </div>
+                </li>
+                <li class="dropdown">
+                    <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
+                        <span class="caret"></span></button>
+                    <ul id="teamMenu" class="dropdown-menu" role="menu">
+                        <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
+                        <li><a data-remodal-target="teamJoinModal">Close a Sprint</a></li>
+                    </ul>
+
+                    <div class="remodal-bg">
+                        <div class="remodal" data-remodal-id="sprintCreationModal">
+                            <button data-remodal-action="close" class="remodal-close"></button>
+                            @helper.form(action = routes.Application.createSprint, 'id -> "sprintForm") {
+                            <h1>Create a Sprint</h1>
+                            <p>
+                                Create a Sprint for your Team.
+                            </p>
+
+                            <div class="form-group">
+                                <input id="sprintName" type="text" placeholder="Sprint Name" name="name" required>
+                                <label>
+                                 Select Start Date
+                                </label>
+                                <input id="startDate" type="date"  name="start" required>
+                                <label>
+                                    Select End Date
+                                </label>
+                                <input id="endDate" type="date"  name="end" required>
+                            </div>
+                            <br>
+                            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                            <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                            }
+                        </div>
+                    </div>
                 </li>
                 </ul>
                 <form action="@routes.Application.logout()" method="get" class="navbar-form navbar-right">

@@ -1,8 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import models.Account;
-import models.Team;
+import models.*;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -23,6 +22,26 @@ public class Application extends Controller {
         Team team = Form.form(Team.class).bindFromRequest().get();
         team.save();
 
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result createSprint()
+    {
+        Sprint sprint = Form.form(Sprint.class).bindFromRequest().get();
+
+        Ebean.beginTransaction();
+        try {
+            Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+            Team team = account.team;
+
+            team.sprints.add(sprint);
+
+            team.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
         return redirect(routes.Application.dashboard());
     }
 

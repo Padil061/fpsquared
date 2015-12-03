@@ -27,3 +27,7 @@ $('#createTeam').click(function(e) {
 $('#joinTeam').click(function(e) {
         $('#joinForm').submit();
 });
+
+$('#createSprint').click(function(e) {
+        $('#sprintForm').submit();
+});

@@ -15,15 +15,18 @@ public class Story {
     @Column( name = "storyID")
     private long id;
 
-    @Formats.DateTime(pattern="dd/MM/yyyy")
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
     @Constraints.Required
     @Column( name = "start")
     public Date start;
 
-    @Formats.DateTime(pattern="dd/MM/yyyy")
+    @Formats.DateTime(pattern = "yyyy-MM-dd")
     @Constraints.Required
     @Column( name = "end")
     public Date end;
+
+    @Column( name = "finished")
+    public boolean finished;
 
     @ManyToOne(cascade= CascadeType.ALL)
     public Sprint sprint;
