@@ -211,21 +211,4 @@ max-height:550px;
 }
 
 
-/* Sidebars */
-.sidebar.right {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 200px;
-    background: #448AFF;
-}
-
-.sidebars > .sidebar {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
-    position: fixed;
-    color: white;
-    padding: 30px;
-    font-size: 2em;
-    text-align: center;
-}
+/* Sidebar */
