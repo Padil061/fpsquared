@@ -221,6 +221,7 @@ max-height:550px;
 
 /* Sidebar */
 
+<<<<<<< HEAD
 
 
 /* Login */
@@ -228,3 +229,8 @@ max-height:550px;
 .login-text {
   color:black;
 }
+=======
+#menuBar {
+margin-top:25px;
+}
+>>>>>>> 1edd91694a8477a1df14bbb9042867ec2ee61016

@@ -8,8 +8,7 @@ $( document ).ready(function() {
     });
 
     $('.demo.sidebar')
-      .sidebar('setting', 'transition', 'overlay')
-      .sidebar('toggle');
+        .sidebar('toggle');
 });
 
 $('.sprint').click(function() {
@@ -30,4 +29,9 @@ $('#joinTeam').click(function(e) {
 
 $('#createSprint').click(function(e) {
         $('#sprintForm').submit();
+});
+
+$('#menuBar').click(function() {
+        $('.demo.sidebar')
+          .sidebar('toggle');
 });
