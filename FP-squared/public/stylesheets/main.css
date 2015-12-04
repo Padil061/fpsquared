@@ -10,7 +10,8 @@ label {
   display:block;
 }
 input {
-  color:black;
+color: black;
+border-radius: 20px
 }
 #front-heading {
   text-align:center;
@@ -41,13 +42,16 @@ height: 560px;
 float: left;
 margin: 30px 10px;
 display: inline-block;
+text-align: center;
 }
 #userName {
   margin-bottom:25px;
 }
 .submit-button {
-  margin-top: 25px;
-  background-color:rgb(210, 27, 49);
+margin-top: 25px;
+background-color: rgb(210, 77, 151);
+font-style: italic;
+border-radius: 20px;
 }
 .media-body {
   color:white;
@@ -174,14 +178,14 @@ background-color: rgb(62, 86, 255);
 }
 
 #login-form {
-  width: 250px;
-  height: 300px;
-  position: absolute;
-  right: 50px;
-  margin-top: 40px;
-  background-color: #f0e646;
-  border-radius: 25px;
-  border: 10px;
+width: 295px;
+height: 300px;
+position: absolute;
+right: 500px;
+margin-top: 40px;
+background-color: #7fc3f0;
+border-radius: 25px;
+border: 10px;
 }
 
 /*
@@ -216,3 +220,11 @@ max-height:550px;
 
 
 /* Sidebar */
+
+
+
+/* Login */
+
+.login-text {
+  color:black;
+}
