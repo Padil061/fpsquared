@@ -30,7 +30,7 @@
                         <span class="caret"></span></button>
                     <ul id="sprintMenu" class="dropdown-menu" role="menu">
                         <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
-                        <li><a data-remodal-target="teamJoinModal">Close a Sprint</a></li>
+                        <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
                     </ul>
                 </li>
                 } <!-- end of sprint dropdown -->
@@ -132,6 +132,36 @@
             <br>
             <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
             <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            }
+        </div>
+    </div>
+
+    <!-- This is the interface for closing a sprint -->
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="sprintClosureModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.closeSprint, 'id -> "closeSprintForm") {
+            <h1>Close a sprint</h1>
+            <p>
+                Click on the dropdown to see all the sprints that you can close.
+            </p>
+
+            <div class="form-group">
+                <select name="id">
+                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                    @if(account.team != null) {
+                    @for(sprint <- account.team.getOpenSprints()) {
+                    <option value="@sprint.getId()">@sprint.name</option>
+                    }
+                    } else {
+                    You must be in a team to close a sprint.
+                    }
+                    }
+                </select>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="closeSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Close Sprint</button>
             }
         </div>
     </div>

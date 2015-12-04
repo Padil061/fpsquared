@@ -4,6 +4,7 @@ import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,5 +35,17 @@ public class Team extends Model {
 
 	public long getId() {
 		return id;
+	}
+
+	public List<Sprint> getOpenSprints() {
+		List<Sprint> openSprints = new ArrayList<Sprint>();
+
+		for(Sprint sprint : sprints) {
+			if (sprint.finished == false) {
+				openSprints.add(sprint);
+			}
+		}
+
+		return openSprints;
 	}
 }

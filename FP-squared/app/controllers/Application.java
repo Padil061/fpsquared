@@ -2,6 +2,8 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.*;
+import play.Logger;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -69,10 +71,11 @@ public class Application extends Controller {
     }
 
     public Result joinTeam() {
-        Team team = Form.form(Team.class).bindFromRequest().get();
+        DynamicForm form = Form.form().bindFromRequest();
+        Long id = Long.parseLong(form.get("id"));
         Ebean.beginTransaction();
         try {
-            team = Team.find.where().eq("name", team.name).findUnique();
+            Team team = Team.find.byId(id);
             Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
             account.team = team;
 
@@ -83,9 +86,27 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
 
-        String userName = session().get("connected");
+        return redirect(routes.Application.teamDashboard(id));
+    }
 
-        return redirect(routes.Application.teamDashboard(team.getId()));
+    public Result closeSprint() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+        Long id = Long.parseLong(form.get("id"));
+
+        Ebean.beginTransaction();
+        try {
+            Sprint sprint = Sprint.find.byId(id);
+
+            sprint.finished = true;
+
+            sprint.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
     }
 
     public Result changeView(String view) {
