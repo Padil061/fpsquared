@@ -1,8 +1,9 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import models.*;
-import play.Logger;
+import models.Account;
+import models.Sprint;
+import models.Team;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -118,9 +119,9 @@ public class Application extends Controller {
             return redirect(routes.Application.dashboard());
         }
         else if(view.equals("team")) {
-            Team team = account.team;
+        //    Team team = account.team;
 
-            return redirect(routes.Application.teamDashboard(team.getId()));
+            return redirect(routes.Application.dashboard());
         }
         else if(view.equals("story")) {
             return redirect(routes.Application.dashboard());
