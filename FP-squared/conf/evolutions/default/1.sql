@@ -14,6 +14,7 @@ create table account (
 create table checklist_item (
   checklistitemID           bigint auto_increment not null,
   checked                   tinyint(1) default 0,
+  text                      varchar(255),
   task_taskID               bigint,
   constraint pk_checklist_item primary key (checklistitemID))
 ;
@@ -21,6 +22,7 @@ create table checklist_item (
 create table comment (
   commentID                 bigint auto_increment not null,
   text                      varchar(255),
+  userName                  varchar(255),
   task_taskID               bigint,
   constraint pk_comment primary key (commentID))
 ;

@@ -36,5 +36,9 @@ public class Task extends Model {
     @ManyToOne(cascade= CascadeType.ALL)
     public Story story;
 
+    public long getId() {
+        return id;
+    }
+
     public static Model.Finder<Long, Task> find = new Model.Finder<Long, Task>(Task.class);
 }

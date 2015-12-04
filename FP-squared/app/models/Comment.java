@@ -16,6 +16,9 @@ public class Comment extends Model {
     @Column(name = "text")
     public String text;
 
+    @Column(name = "userName")
+    public String userName;
+
     @ManyToOne(cascade = CascadeType.ALL)
     public Task task;
 
