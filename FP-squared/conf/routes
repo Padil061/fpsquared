@@ -38,6 +38,9 @@ POST    /create-sprint             @controllers.Application.createSprint()
 # Add a checklist item to a task
 #POST    /add-checklistitem         @controllers.Application.addChecklistitem()
 
+# Close a sprint
+POST /close-sprint                  @controllers.Application.closeSprint()
+
 # Welcome New User
 GET     /welcome                   @controllers.Application.welcome(userName : String)
 

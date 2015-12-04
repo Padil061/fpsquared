@@ -31,6 +31,10 @@ $('#createSprint').click(function(e) {
         $('#sprintForm').submit();
 });
 
+$('#closeSprint').click(function(e) {
+        $('#closeSprintForm').submit();
+});
+
 $('#menuBar').click(function() {
         $('.demo.sidebar')
           .sidebar('toggle');

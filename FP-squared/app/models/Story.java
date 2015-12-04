@@ -2,7 +2,6 @@ package models;
 
 import com.avaje.ebean.Model;
 import play.data.format.Formats;
-import play.data.validation.Constraints;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,12 +15,10 @@ public class Story {
     private long id;
 
     @Formats.DateTime(pattern = "yyyy-MM-dd")
-    @Constraints.Required
     @Column( name = "start")
     public Date start;
 
     @Formats.DateTime(pattern = "yyyy-MM-dd")
-    @Constraints.Required
     @Column( name = "end")
     public Date end;
 
