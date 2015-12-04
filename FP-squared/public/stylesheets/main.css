@@ -221,16 +221,19 @@ max-height:550px;
 
 /* Sidebar */
 
-<<<<<<< HEAD
-
+.view {
+    float: left;
+    margin: 50px 85px;
+    width: 125px;
+}
 
 /* Login */
 
 .login-text {
   color:black;
 }
-=======
+
 #menuBar {
 margin-top:25px;
 }
->>>>>>> 1edd91694a8477a1df14bbb9042867ec2ee61016
+

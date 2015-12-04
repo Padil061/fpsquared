@@ -3,101 +3,41 @@
 <nav class="navbar navbar-default">
     <ul class="container-fluid">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
             <a class="navbar-brand" href="#">FP-Squared</a>
+
+            <!-- Start of Navigation bar -->
             <ul class="nav navbar-nav">
                 <li><a href="@routes.Application.index()">HOME</a></li>
                 @if(session.containsKey("connected")) {
                 <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
-                <li class="dropdown">
+
+                <!-- team dropdown -->
+                @if(session.containsKey("team")) {
+                <li id="teamDropdown" class="dropdown">
                         <button style="margin-top: 7px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Team
                         <span class="caret"></span></button>
                         <ul id="teamMenu" class="dropdown-menu" role="menu">
                             <li><a data-remodal-target="teamCreationModal">Create a Team</a></li>
                             <li><a data-remodal-target="teamJoinModal">Join a Team</a></li>
                         </ul>
-
-                        <!-- This is the interface for creating a team -->
-                        <div class="remodal-bg">
-                            <div class="remodal" data-remodal-id="teamCreationModal">
-                                <button data-remodal-action="close" class="remodal-close"></button>
-                                @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
-                                <h1>Team Creation</h1>
-                                <p>
-                                    Create a Team so you can start your Sprints! It's as simple as just picking your team name!
-                                </p>
-
-                                    <div class="form-group">
-                                        <input id="teamName" type="text" placeholder="Team Name" name="name" required>
-                                    </div>
-                                    <br>
-                                    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                                    <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
-                                }
-                            </div>
-                        </div>
-
-                        <!-- This is the interface for joining a team -->
-                        <div class="remodal-bg">
-                            <div class="remodal" data-remodal-id="teamJoinModal">
-                                <button data-remodal-action="close" class="remodal-close"></button>
-                                @helper.form(action = routes.Application.joinTeam, 'id -> "joinForm") {
-                                <h1>Join a team</h1>
-                                <p>
-                                    Click on the dropdown to see all the teams you can join!
-                                </p>
-
-                                <div class="form-group">
-                                    <!-- All possible teams to join -->
-                                    <select name="name">
-                                        @for(team <- Team.find.all()) {
-                                        <option id="team_@team.getId()">@team.name</option>
-                                        }
-                                    </select>
-                                </div>
-                                <br>
-                                <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                                <button id="joinTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Join Team</button>
-                                }
-                            </div>
-                        </div>
                 </li>
-                <li class="dropdown">
+                } <!-- end of team dropdown -->
+
+                @if(session.containsKey("sprint")) {
+                <!-- sprint dropdown -->
+                <li id="sprintDropdown" class="dropdown">
                     <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
                         <span class="caret"></span></button>
-                    <ul id="teamMenu" class="dropdown-menu" role="menu">
+                    <ul id="sprintMenu" class="dropdown-menu" role="menu">
                         <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
                         <li><a data-remodal-target="teamJoinModal">Close a Sprint</a></li>
                     </ul>
-
-                    <div class="remodal-bg">
-                        <div class="remodal" data-remodal-id="sprintCreationModal">
-                            <button data-remodal-action="close" class="remodal-close"></button>
-                            @helper.form(action = routes.Application.createSprint, 'id -> "sprintForm") {
-                            <h1>Create a Sprint</h1>
-                            <p>
-                                Create a Sprint for your Team.
-                            </p>
-
-                            <div class="form-group">
-                                <input id="sprintName" type="text" placeholder="Sprint Name" name="name" required>
-                                <label>
-                                 Select Start Date
-                                </label>
-                                <input id="startDate" type="date"  name="start" required>
-                                <label>
-                                    Select End Date
-                                </label>
-                                <input id="endDate" type="date"  name="end" required>
-                            </div>
-                            <br>
-                            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                            <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
-                            }
-                        </div>
-                    </div>
                 </li>
-                </ul>
+                } <!-- end of sprint dropdown -->
+
+                </ul> <!-- end of Navigation bar -->
+
+                <!-- Login / Logout forms -->
                 <form action="@routes.Application.logout()" method="get" class="navbar-form navbar-right">
                     <button type="submit" class="btn btn-default">Logout</button>
                 </form>
@@ -112,8 +52,89 @@
                     </div>
                     <button type="submit" class="btn btn-default">Login</button>
                 </form>
-                }
+                }  <!-- end Login / Logout forms -->
 
-        </div><!-- /.navbar-collapse -->
+        </div>
     </div><!-- /.container-fluid -->
+
+    <!-- Team remodal -->
+
+    <!-- This is the interface for creating a team -->
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="teamCreationModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
+            <h1>Team Creation</h1>
+            <p>
+                Create a Team so you can start your Sprints! It's as simple as just picking your team name!
+            </p>
+
+            <div class="form-group">
+                <input id="teamName" type="text" placeholder="Team Name" name="name" required>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            }
+        </div>
+    </div>
+
+    <!-- This is the interface for joining a team -->
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="teamJoinModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.joinTeam, 'id -> "joinForm") {
+            <h1>Join a team</h1>
+            <p>
+                Click on the dropdown to see all the teams you can join!
+            </p>
+
+            <div class="form-group">
+                <!-- All possible teams to join -->
+                <select name="name">
+                    @for(team <- Team.find.all()) {
+                    <option id="team_@team.getId()">@team.name</option>
+                    }
+                </select>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="joinTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Join Team</button>
+            }
+        </div>
+    </div>
+
+    <!-- end Team remodal -->
+
+    <!-- Sprint remodal -->
+
+    <!-- This is the interface for creating a sprint -->
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="sprintCreationModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.createSprint, 'id -> "sprintForm") {
+            <h1>Create a Sprint</h1>
+            <p>
+                Create a Sprint for your Team.
+            </p>
+
+            <div class="form-group">
+                <input id="sprintName" type="text" placeholder="Sprint Name" name="name" required>
+                <label>
+                    Select Start Date
+                </label>
+                <input id="startDate" type="date"  name="start" required>
+                <label>
+                    Select End Date
+                </label>
+                <input id="endDate" type="date"  name="end" required>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            }
+        </div>
+    </div>
+
+    <!-- end Sprint remodal -->
 </nav>

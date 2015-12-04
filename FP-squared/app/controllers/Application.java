@@ -48,7 +48,7 @@ public class Application extends Controller {
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
-        System.out.println(account.userName);
+
         return redirect(routes.Application.dashboard());
     }
 
@@ -86,6 +86,27 @@ public class Application extends Controller {
         String userName = session().get("connected");
 
         return redirect(routes.Application.teamDashboard(team.getId()));
+    }
+
+    public Result changeView(String view) {
+        Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+
+        session(view, account.userName);
+
+        if(view.equals("sprint")) {
+            return redirect(routes.Application.dashboard());
+        }
+        else if(view.equals("team")) {
+            Team team = account.team;
+
+            return redirect(routes.Application.teamDashboard(team.getId()));
+        }
+        else if(view.equals("story")) {
+            return redirect(routes.Application.dashboard());
+        }
+        else {
+            return redirect(routes.Application.dashboard());
+        }
     }
 
     public Result login() { return ok(login.render()); }
