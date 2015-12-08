@@ -70,7 +70,8 @@ public class Application extends Controller {
     }
 
     public Result joinTeam() {
-        DynamicForm form = Form.form().bindFromRequest();
+        //DynamicForm form = Form.form().bindFromRequest();
+        DynamicForm form = new DynamicForm().bindFromRequest();
         Long id = Long.parseLong(form.get("id"));
         Ebean.beginTransaction();
         try {
