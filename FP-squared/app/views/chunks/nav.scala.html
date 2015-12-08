@@ -80,7 +80,7 @@
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                        @if(account.team != null && account.team.sprints != null) {
+                        @if(account.team != null && account.team.getOpenSprints() != null) {
                             @for(sprint <- account.team.getOpenSprints()) {
                                 <li><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
                              }
