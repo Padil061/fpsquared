@@ -40,5 +40,9 @@ public class Sprint extends Model {
     @ManyToOne(cascade = CascadeType.ALL)
     public Team team;
 
+    public long getId() {
+        return id;
+    }
+
     public static Model.Finder<Long, Sprint> find = new Model.Finder<Long, Sprint>(Sprint.class);
 }

@@ -221,8 +221,11 @@ max-height:550px;
 
 /* Sidebar */
 
-
-
+.view {
+    float: left;
+    margin: 50px 85px;
+    width: 125px;
+}
 
 /* Login */
 

@@ -6,18 +6,9 @@ $( document ).ready(function() {
             }
         }
     });
-
-    $('.demo.sidebar')
-        .sidebar('toggle');
 });
 
-$('.sprint').click(function() {
-    alert('You will now be taken to a new view which will have one to many stories, filled with one to many tasks');
-});
-
-$('.task').click(function() {
-    alert('From here, you should be able to comment on a task / assign a user to a task / delete a task');
-});
+// Event listeners
 
 $('#createTeam').click(function(e) {
         $('#teamForm').submit();
@@ -31,7 +22,11 @@ $('#createSprint').click(function(e) {
         $('#sprintForm').submit();
 });
 
-$('#menuBar').click(function() {
+$('#closeSprint').click(function(e) {
+        $('#closeSprintForm').submit();
+});
+
+$('#menuBar').click(function(e) {
         $('.demo.sidebar')
           .sidebar('toggle');
 });

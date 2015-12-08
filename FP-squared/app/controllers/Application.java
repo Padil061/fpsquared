@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.*;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -48,7 +49,7 @@ public class Application extends Controller {
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
-        System.out.println(account.userName);
+
         return redirect(routes.Application.dashboard());
     }
 
@@ -69,10 +70,11 @@ public class Application extends Controller {
     }
 
     public Result joinTeam() {
-        Team team = Form.form(Team.class).bindFromRequest().get();
+        DynamicForm form = Form.form().bindFromRequest();
+        Long id = Long.parseLong(form.get("id"));
         Ebean.beginTransaction();
         try {
-            team = Team.find.where().eq("name", team.name).findUnique();
+            Team team = Team.find.byId(id);
             Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
             account.team = team;
 
@@ -83,9 +85,122 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
 
-        String userName = session().get("connected");
+        return redirect(routes.Application.teamDashboard(id));
+    }
 
-        return redirect(routes.Application.teamDashboard(team.getId()));
+    public Result closeSprint() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+        Long id = Long.parseLong(form.get("id"));
+
+        Ebean.beginTransaction();
+        try {
+            Sprint sprint = Sprint.find.byId(id);
+
+            sprint.finished = true;
+
+            sprint.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result changeView(String view) {
+        Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+
+        session(view, account.userName);
+
+        if(view.equals("sprint")) {
+            return redirect(routes.Application.dashboard());
+        }
+        else if(view.equals("team")) {
+        //    Team team = account.team;
+
+            return redirect(routes.Application.dashboard());
+        }
+        else if(view.equals("story")) {
+            return redirect(routes.Application.dashboard());
+        }
+        else {
+            return redirect(routes.Application.dashboard());
+        }
+    }
+
+    public Result createTask() {
+        Task task = Form.form(Task.class).bindFromRequest().get();
+
+        session("task", Long.toString(task.getId()));
+
+        Ebean.beginTransaction();
+        try {
+            Long storyId = Long.parseLong(session().get("story"));
+            Story story = Story.find.byId(storyId);
+
+            story.tasks.add(task);
+
+            story.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result createChecklistItem() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String text = form.get("text");
+
+        Ebean.beginTransaction();
+        try {
+            Long taskId = Long.parseLong(session().get("task"));
+            Task task = Task.find.byId(taskId);
+
+            ChecklistItem item = new ChecklistItem();
+            item.text = text;
+            item.task = task;
+            item.save();
+
+            task.checklistItems.add(item);
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result createComment() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String text = form.get("text");
+
+        Ebean.beginTransaction();
+        try {
+            Long taskId = Long.parseLong(session().get("task"));
+            Task task = Task.find.byId(taskId);
+
+            Comment comment = new Comment();
+            comment.task = task;
+            comment.text = text;
+            comment.userName = session().get("connected");
+            comment.save();
+
+            task.comments.add(comment);
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
     }
 
     public Result login() { return ok(login.render()); }
