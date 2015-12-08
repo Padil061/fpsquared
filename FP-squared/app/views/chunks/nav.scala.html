@@ -147,6 +147,49 @@
             <!-- end Sprint remodal -->
             } <!-- end of sprint dropdown -->
 
+            @if(session.containsKey("story")) {
+            <!-- story dropdown -->
+            <li id="storyDropdown" class="dropdown">
+                <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Story
+                    <span class="caret"></span></button>
+                <ul id="storyMenu" class="dropdown-menu" role="menu">
+                    <li><a data-remodal-target="storyCreationModal">Create a Story</a></li>
+                    <li><a data-remodal-target="sprintClosureModal">Close a Story</a></li>
+                </ul>
+            </li>
+
+            <!-- Story remodal -->
+
+            <!-- This is the interface for creating a Story -->
+            <div class="remodal-bg">
+                <div class="remodal" data-remodal-id="storyCreationModal">
+                    <button data-remodal-action="close" class="remodal-close"></button>
+                    @helper.form(action = routes.Application.createStory, 'id -> "storyForm") {
+                    <h1>Create a Story</h1>
+                    <p>
+                        Create a Story for your Team.
+                    </p>
+
+                    <div class="form-group">
+                        <input id="storyName" type="text" placeholder="story Name" name="name" required>
+                        <label>
+                            Select Start Date
+                        </label>
+                        <input id="storyStartDate" type="date"  name="start" required>
+                        <label>
+                            Select End Date
+                        </label>
+                        <input id="storyEndDate" type="date"  name="end" required>
+                    </div>
+                    <br>
+                    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                    <button id="createStory" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                    } <!-- end form -->
+                </div>
+            </div>
+            <!-- end story remodal -->
+            } <!-- end of story dropdown -->
+
         </ul> <!-- end of Navigation bar -->
 
         <!-- Login / Logout forms -->

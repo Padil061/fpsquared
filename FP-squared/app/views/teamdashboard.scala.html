@@ -30,21 +30,23 @@
         <h3>Your new team!</h3>
 
         <div id="sprints">
-            <a href="@routes.Application.sprintInfo()">
-                <div class="sprint">
-                    Sprint_Name
-                </div>
-            </a>
-            <a href="@routes.Application.sprintInfo()">
-                <div class="sprint">
-                    Sprint_Name
-                </div>
-            </a>
-            <a href="@routes.Application.sprintInfo()">
-                <div class="sprint">
-                    Sprint_Name
-                </div>
-            </a>
+            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                @if(account.team != null) {
+                    @for(sprint <- account.team.sprints) {
+                        <a href="@routes.Application.sprintInfo(sprint.getId())">
+                            <div class="sprint">
+                                @sprint.name
+                            </div>
+                        </a>
+                    }
+                } else {
+                    <a href="#">
+                        <div class="sprint">
+                             You must be in a team to close a sprint.
+                        </div>
+                    </a>
+                }
+            }
         </div>
     </div>
 </div>
