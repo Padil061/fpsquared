@@ -14,6 +14,9 @@ public class ChecklistItem extends Model {
     @Column( name = "checked")
     public boolean checked;
 
+    @Column( name = "text")
+    public String text;
+
     @ManyToOne(cascade = CascadeType.ALL)
     public Task task;
 

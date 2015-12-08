@@ -1,9 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import models.Account;
-import models.Sprint;
-import models.Team;
+import models.*;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -129,6 +127,80 @@ public class Application extends Controller {
         else {
             return redirect(routes.Application.dashboard());
         }
+    }
+
+    public Result createTask() {
+        Task task = Form.form(Task.class).bindFromRequest().get();
+
+        session("task", Long.toString(task.getId()));
+
+        Ebean.beginTransaction();
+        try {
+            Long storyId = Long.parseLong(session().get("story"));
+            Story story = Story.find.byId(storyId);
+
+            story.tasks.add(task);
+
+            story.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result createChecklistItem() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String text = form.get("text");
+
+        Ebean.beginTransaction();
+        try {
+            Long taskId = Long.parseLong(session().get("task"));
+            Task task = Task.find.byId(taskId);
+
+            ChecklistItem item = new ChecklistItem();
+            item.text = text;
+            item.task = task;
+            item.save();
+
+            task.checklistItems.add(item);
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result createComment() {
+
+        DynamicForm form = Form.form().bindFromRequest();
+
+        String text = form.get("text");
+
+        Ebean.beginTransaction();
+        try {
+            Long taskId = Long.parseLong(session().get("task"));
+            Task task = Task.find.byId(taskId);
+
+            Comment comment = new Comment();
+            comment.task = task;
+            comment.text = text;
+            comment.userName = session().get("connected");
+            comment.save();
+
+            task.comments.add(comment);
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
     }
 
     public Result login() { return ok(login.render()); }

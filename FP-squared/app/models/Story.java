@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Story {
+public class Story  extends Model {
 
     @Id
     @Column( name = "storyID")
