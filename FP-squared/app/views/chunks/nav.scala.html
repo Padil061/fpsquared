@@ -56,9 +56,9 @@
 
                     <div class="form-group">
                         <!-- All possible teams to join -->
-                        <select name="name">
+                        <select name="id">
                             @for(team <- Team.find.all()) {
-                            <option id="team_@team.getId()">@team.name</option>
+                            <option value="@team.getId()">@team.name</option>
                             }
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
                     <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
-                    <li><a data-remodal-target="teamJoinModal">Close a Sprint</a></li>
+                    <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
                 </ul>
             </li>
 

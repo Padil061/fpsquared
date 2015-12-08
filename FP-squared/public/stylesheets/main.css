@@ -25,6 +25,9 @@ border-radius: 20px
 .navbar {
   margin-bottom:0;
 }
+ul.nav.navbar-nav {
+  width: 500px;
+}
 #menuBar {
   margin-right:15px;
   float:right;
