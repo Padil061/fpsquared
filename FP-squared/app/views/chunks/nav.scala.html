@@ -56,9 +56,9 @@
 
                     <div class="form-group">
                         <!-- All possible teams to join -->
-                        <select name="name">
+                        <select name="id">
                             @for(team <- Team.find.all()) {
-                            <option id="team_@team.getId()">@team.name</option>
+                            <option value="@team.getId()">@team.name</option>
                             }
                         </select>
                     </div>
