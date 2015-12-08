@@ -57,7 +57,7 @@ GET     /dashboard/team/:teamID    @controllers.Application.teamDashboard(teamID
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
-GET     /sprint                @controllers.Application.sprintInfo(sprintID: Long)
+GET     /dashboard/sprint                @controllers.Application.sprintInfo(sprintID: Long)
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)

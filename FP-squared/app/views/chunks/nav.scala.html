@@ -79,6 +79,14 @@
                 <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
+                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                        @if(account.team != null && account.team.sprints != null) {
+                            @for(sprint <- account.team.getOpenSprints()) {
+                                <li><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
+                             }
+                            <li class="divider"></li>
+                        }
+                    }
                     <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
                     <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
                 </ul>
@@ -147,7 +155,7 @@
             <!-- end Sprint remodal -->
             } <!-- end of sprint dropdown -->
 
-            @if(session.containsKey("story")) {
+            @if(session.containsKey("sprintID")) {
             <!-- story dropdown -->
             <li id="storyDropdown" class="dropdown">
                 <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Story
