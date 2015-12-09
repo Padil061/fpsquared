@@ -208,8 +208,6 @@ public class Application extends Controller {
 
     public Result dashboard() { return ok(dashboard.render()); }
 
-    public Result sprintInfo() { return ok(sprint.render()); }
-
     public Result sprintInfo(Long sprintID) {
         session("sprintID" , Long.toString(sprintID));
         return ok(sprint.render());
