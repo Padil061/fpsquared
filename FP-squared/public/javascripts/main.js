@@ -34,6 +34,10 @@ $('#createTask').click(function(e) {
         $('#taskForm').submit();
 });
 
+$('#createComment').click(function(e) {
+        $('#commentForm').submit();
+});
+
 $('#menuBar').click(function(e) {
         $('.demo.sidebar')
           .sidebar('toggle');

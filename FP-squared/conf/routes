@@ -36,7 +36,7 @@ POST    /create-task               @controllers.Application.createTask()
 #POST    /add-comment               @controllers.Application.createComment()
 
 # Add a comment to a task
-#POST    /add-comment               @controllers.Application.createComment()
+POST    /add-comment               @controllers.Application.createComment()
 
 # Add a comment to a task
 #DELETE    /remove-comment               @controllers.Application.removeComment()
