@@ -7,8 +7,7 @@
 	<div class="container">
   	<div class="media-body">
   		<div>
-  		<img id = "umbrella" src= "@routes.Assets.versioned("images/colorful_umbrellas.jpg")">	
-
+			<img id = "umbrella" src= "@routes.Assets.versioned("images/colorful_umbrellas.jpg")">
   		</div>
     <h4 class="media-heading">Media heading</h4>
    			Agile Management Tool: This  is an iterative approach of managing the design, planning and guiding project activities for engineering, information technology, and other business areas that aims to provide new product or service development in a highly flexible and efficient manner.
@@ -21,6 +20,8 @@
 						<label>User Name: </label><input id="userName"  type="text" name="userName">
 						<label>Password: </label><input  id="password" type="password" name="password">
 						<button class="submit-button" type="submit">Create Account</button>
+
+						<div style="margin-top: 20px;">Have an account already? <a href="@routes.Application.login()">Login in now!</a></div>
 					</div>
 				</form>
 			</div>
