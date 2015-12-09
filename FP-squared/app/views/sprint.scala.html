@@ -6,13 +6,15 @@
             <i class="sidebar icon"></i>
         </div>
     </div>
-    @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
-        @if(sprint.stories != null) {
-            @for(story <- sprint.stories) {
+    @if(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique() != null){
+        @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
+            @if(sprint.stories != null) {
+                @for(story <- sprint.stories) {
                 <a class="item" id="Story_@story.getId()" href="@routes.Application.renderStory(sprint.getId(), story.getId())">
-                   @story.name
+                    @story.name
                 </a>
-             }
+                }
+            }
         }
     }
 </div>
@@ -27,25 +29,27 @@
 
     <div class="middle-bar">
         <div class="content-container">
-            @defining(Story.find.where().eq("storyID", session.get("storyID")).findUnique()) { story =>
-                @if(story.tasks != null) {
-                    @for(status <- models.providers.Context.getInstance().getStoryStatusStates()) {
+            @if(Story.find.where().eq("storyID", session.get("storyID")).findUnique() != null){
+                @defining(Story.find.where().eq("storyID", session.get("storyID")).findUnique()) { story =>
+                    @if(story.tasks != null) {
+                        @for(status <- models.providers.Context.getInstance().getStoryStatusStates()) {
                         <div class="taskStatus">
                             <i class="fa fa-rocket"></i>
                             <h2 style="text-align: center;">@status</h2>
-                            <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" data-remodal-target="taskCreationModal">
+                            <button style="margin-top: -15px;" class="btn btn-success" data-remodal-target="taskCreationModal">
                                 Add task
                             </button>
-                        @for(task <- story.getTasksWithStatus(status)) {
-                            <div class="task">
-                                <div class="task" data-remodal-id="@task.getId()">
-                                    @task.name
-                                    <a data-remodal-target="taskViewModal"><i style= "float: right;" class="icon-edit"></i></a>
+                                @for(task <- story.getTasksWithStatus(status)) {
+                                <div class="task">
+                                    <div class="task" data-remodal-id="@task.getId()">
+                                        @task.name
+                                        <a data-remodal-target="taskViewModal"><i style= "float: right;" class="icon-edit"></i></a>
+                                    </div>
                                 </div>
+                                }<!-- end of tasks in that column-->
                             </div>
-                        }<!-- end of tasks in that column-->
-                        </div>
-                    }<!-- end of top for loop, column for each status-->
+                            }<!-- end of top for loop, column for each status-->
+                    }
                 }
             }
         </div>

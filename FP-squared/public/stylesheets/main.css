@@ -246,7 +246,6 @@ max-width: 80%;
 max-height:550px;
 }
 
-
 /* Sidebar */
 
 #show-sidebar {
@@ -263,3 +262,9 @@ color:black;
 margin-top:25px;
 }
 
+/* Story View */
+
+.taskStatus {
+width:25%;
+border: 1px black solid;
+}

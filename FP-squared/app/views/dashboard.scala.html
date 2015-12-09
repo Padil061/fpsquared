@@ -11,11 +11,13 @@
             <a href="#">
                 <div class="team">
                     @if(session().containsKey("connected")) {
-                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                            @if(account.team != null) {
-                                Your Team is : @account.team.name
-                            } else {
-                                Join a team by using the drop-down menu
+                        @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
+                            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                                @if(account.team != null) {
+                                    Your Team is : @account.team.name
+                                } else {
+                                    Join a team by using the drop-down menu
+                                }
                             }
                         }
                     }

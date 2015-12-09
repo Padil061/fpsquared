@@ -77,16 +77,18 @@
                 <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
+                    @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                        @if(account.team != null && account.team.sprints != null) {
-                            @for(sprint <- account.team.getOpenSprints()) {
-                                <li ><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
-                             }
-                            @for(sprint <- account.team.getClosedSprints()) {
-                                <li ><a href="@routes.Application.sprintInfo(sprint.getId())"><s>@sprint.name</s></a></li>
-                            }
-                            <li class="divider"></li>
-                        }
+                    @if(account.team != null && account.team.sprints != null) {
+                    @for(sprint <- account.team.getOpenSprints()) {
+                    <li ><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
+                    }
+                    @for(sprint <- account.team.getClosedSprints()) {
+                    <li ><a href="@routes.Application.sprintInfo(sprint.getId())"><s>@sprint.name</s></a></li>
+                    }
+                    <li class="divider"></li>
+                    }
+                    }
                     }
                     <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
                     <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
@@ -135,6 +137,7 @@
 
                     <div class="form-group">
                         <select name="id">
+                            @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
                             @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
                             @if(account.team != null) {
                             @for(sprint <- account.team.getOpenSprints()) {
@@ -143,13 +146,15 @@
                             } else {
                             You must be in a team to close a sprint.
                             }
+                            }
+                            }
                         </select>
                     </div>
                     } <!-- end form -->
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
                     <button id="closeSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Close Sprint</button>
-                    }
+
                 </div>
             </div>
 
