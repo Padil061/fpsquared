@@ -5,6 +5,7 @@ import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,4 +43,16 @@ public class Story  extends Model {
     public long getId() {return id; }
 
     public static Model.Finder<Long, Story> find = new Model.Finder<Long, Story>(Story.class);
+
+    public List<Task> getTasksWithStatus(String status) {
+        List<Task> tasksWithStatus = new ArrayList<Task>();
+
+        for (Task task : tasks) {
+            if (task.status.equals(status)) {
+                tasksWithStatus.add(task);
+            }
+        }
+        
+        return tasksWithStatus;
+    }
 }
