@@ -6,15 +6,15 @@
             <i class="sidebar icon"></i>
         </div>
     </div>
-       <a class="item" href="#">
-           Sprint View
-       </a>
-       <a class="item" href="#">
-           Team View
-       </a>
-       <a class="item" href="#">
-          Story View
-       </a>
+    @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
+        @if(sprint.stories != null) {
+            @for(story <- sprint.stories) {
+                <a class="item" id="Story_@story.getId()" onclick="renderStory(story.getId())">
+                   @story.name
+                </a>
+             }
+        }
+    }
 </div>
 
 
