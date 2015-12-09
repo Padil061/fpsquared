@@ -11,7 +11,6 @@ import views.html.*;
 public class Application extends Controller {
 
     public Result index() {
-        session().clear();
         return ok(index.render());
     }
 
