@@ -4,7 +4,7 @@ body{
   min-width: 320px;
 }
 body > div{
-  padding-top: 20px;
+  /*padding-top: 20px;*/
 }
 label {
   display:block;
@@ -243,16 +243,14 @@ max-height:550px;
 
 /* Sidebar */
 
-.view {
-    float: left;
-    margin: 50px 85px;
-    width: 125px;
+#show-sidebar {
+margin: 25px 40px;
 }
 
 /* Login */
 
 .login-text {
-  color:black;
+color:black;
 }
 
 #menuBar {

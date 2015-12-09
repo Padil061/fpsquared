@@ -41,3 +41,14 @@ $('#menuBar').click(function(e) {
         $('.demo.sidebar')
           .sidebar('toggle');
 });
+
+
+$('#show-sidebar').click(function() {
+      $('#show-sidebar').hide();
+      $('.menu.sidebar').sidebar('toggle');
+});
+
+$('#hide-sidebar').click(function() {
+      $('#show-sidebar').show();
+      $('.menu.sidebar').sidebar('toggle');
+});

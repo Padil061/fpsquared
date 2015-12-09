@@ -1,6 +1,11 @@
 @main("Sprint Information") {
 
-<div class="ui vertical inverted sidebar menu left uncover visible">
+<div class="ui left inverted vertical menu sidebar">
+    <div class="item">
+        <div id="hide-sidebar" class="button">
+            <i class="sidebar icon"></i>
+        </div>
+    </div>
        <a class="item" href="#">
            Sprint View
        </a>
@@ -13,7 +18,13 @@
 </div>
 
 
-<div class="dimmed pusher">
+<div class="pusher">
+
+    <div id="show-sidebar" class="button toggler">
+        <i class="sidebar icon"></i>
+        Stories
+    </div>
+
     <div class="middle-bar">
         <div class="content-container">
             @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
