@@ -30,7 +30,7 @@ POST    /create-sprint             @controllers.Application.createSprint()
 POST    /create-story              @controllers.Application.createStory()
 
 # Create Task which is associated with a Story
-#POST    /create-task               @controllers.Application.createTask()
+POST    /create-task               @controllers.Application.createTask()
 
 # Add a comment to a task
 #POST    /add-comment               @controllers.Application.createComment()
@@ -46,6 +46,9 @@ POST    /create-story              @controllers.Application.createStory()
 
 # Close a sprint
 POST /close-sprint                  @controllers.Application.closeSprint()
+
+# Close a story
+POST /close-story                 @controllers.Application.closeStory()
 
 # Welcome New User
 GET     /welcome                   @controllers.Application.welcome(userName : String)

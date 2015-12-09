@@ -39,5 +39,7 @@ public class Story  extends Model {
     @OneToMany(mappedBy = "story", cascade= CascadeType.ALL)
     public List<Task> tasks;
 
+    public long getId() {return id; }
+
     public static Model.Finder<Long, Story> find = new Model.Finder<Long, Story>(Story.class);
 }
