@@ -27,7 +27,7 @@ POST    /join-team              @controllers.Application.joinTeam()
 POST    /create-sprint             @controllers.Application.createSprint()
 
 # Create Story which is associated with a Sprint
-#POST    /create-story              @controllers.Application.createStory()
+POST    /create-story              @controllers.Application.createStory()
 
 # Create Task which is associated with a Story
 #POST    /create-task               @controllers.Application.createTask()
@@ -51,7 +51,7 @@ GET     /dashboard                 @controllers.Application.dashboard()
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
-GET     /sprint-info                @controllers.Application.sprintInfo()
+GET     /dashboard/sprint                @controllers.Application.sprintInfo(sprintID: Long)
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)

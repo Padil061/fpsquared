@@ -48,6 +48,25 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
+    public Result createStory() {
+        Story story = Form.form(Story.class).bindFromRequest().get();
+        Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
+
+        Ebean.beginTransaction();
+        try {
+            Sprint sprint = Sprint.find.where().eq("sprintID", SprintID).findUnique();
+
+            sprint.stories.add(story);
+
+            sprint.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.sprintInfo(SprintID));
+    }
+
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
@@ -190,6 +209,10 @@ public class Application extends Controller {
     public Result dashboard() { return ok(dashboard.render()); }
 
     public Result sprintInfo() { return ok(sprint.render()); }
+
+    public Result sprintInfo(Long sprintID) {
+        session("sprintID" , Long.toString(sprintID));
+        return ok(sprint.render()); }
 
     public Result welcome(String userName) {
         return ok(welcome.render(userName));

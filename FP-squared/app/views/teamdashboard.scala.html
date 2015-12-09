@@ -1,0 +1,54 @@
+@(teamID : Long)
+
+@main("Team Dashboard") {
+
+<a id="menuBar" class="btn btn-primary">
+    <span class="glyphicon glyphicon-chevron-left">Show Menu</span>
+</a>
+
+<div class="ui red vertical demo sidebar menu">
+    <a class="view" href="@routes.Application.changeView("sprint")">
+    <i class="icon-fighter-jet"></i>
+    Sprint View
+    </a>
+    <a class="view" href="@routes.Application.changeView("team")">
+    <i class="icon-male"></i> <i class="icon-female"></i>
+    Team View
+    </a>
+    <a class="view" href="@routes.Application.changeView("story")">
+    <i class="icon-book"></i>
+    Story View
+    </a>
+</div>
+
+<div id="prompt">
+    @Application.authenticateUser()
+</div>
+<div class="main-content">
+    <div class="content-container">
+
+        <h3>Your new team!</h3>
+
+        <div id="sprints">
+            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                @if(account.team != null) {
+                    @for(sprint <- account.team.sprints) {
+                        <a href="@routes.Application.sprintInfo(sprint.getId())">
+                            <div class="sprint">
+                                @sprint.name
+                            </div>
+                        </a>
+                    }
+                } else {
+                    <a href="#">
+                        <div class="sprint">
+                             You must be in a team to close a sprint.
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+}
