@@ -56,13 +56,13 @@ public class Application extends Controller {
             Sprint sprint = Sprint.find.where().eq("sprintID", SprintID).findUnique();
 
             sprint.stories.add(story);
-
             sprint.save();
 
             Ebean.commitTransaction();
         } finally {
             Ebean.endTransaction();
         }
+        session("story", Long.toString(story.getId()));
         return redirect(routes.Application.sprintInfo(SprintID));
     }
 
@@ -155,7 +155,7 @@ public class Application extends Controller {
 
         Ebean.beginTransaction();
         try {
-            Long storyId = Long.parseLong(session().get("story"));
+            Long storyId = Long.valueOf(session().get("story")).longValue();
             Story story = Story.find.byId(storyId);
 
             story.tasks.add(task);
@@ -166,7 +166,9 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+
+        Long sprintID = Long.valueOf(session().get("sprintID")).longValue();
+        return redirect(routes.Application.sprintInfo(sprintID));
     }
 
     public Result createChecklistItem() {

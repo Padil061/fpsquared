@@ -30,6 +30,10 @@ $('#createStory').click(function(e) {
         $('#storyForm').submit();
 });
 
+$('#createTask').click(function(e) {
+        $('#taskForm').submit();
+});
+
 $('#menuBar').click(function(e) {
         $('.demo.sidebar')
           .sidebar('toggle');

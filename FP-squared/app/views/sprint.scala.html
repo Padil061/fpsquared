@@ -5,11 +5,11 @@
         <div class="story" style="float:left; margin-left: -60px;">
             <i class="fa fa-rocket"></i>
             <h2 style="text-align: center;">Story Name</h2>
-                <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" onclick="alert('Adding a new task')">
+                <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" data-remodal-target="taskCreationModal">
                     Add task
                 </button>
             <div class="task">
-                Task    <i style= "float: right;" class="icon-edit"></i>   
+                Task    <i style= "float: right;" class="icon-edit"></i>
             </div>
             <div class="task">
                 Task
@@ -34,6 +34,31 @@
                 Task
             </div>
         </div>
+    </div>
+</div>
+
+<div class="remodal-bg">
+    <div class="remodal" data-remodal-id="taskCreationModal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        @helper.form(action = routes.Application.createTask, 'id -> "taskForm") {
+        <h1>Create a Task</h1>
+        <p>
+            Create a Task for your Story.
+        </p>
+
+        <div class="form-group">
+            <input id="taskName" type="text" placeholder="Task Name" name="name" required>
+            <select name="status">
+                <option>Created</option>
+                <option>Started</option>
+                <option>In Review</option>
+                <option>Complete</option>
+            </select>
+        </div>
+        <br>
+        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+        <button id="createTask" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+        } <!-- end form -->
     </div>
 </div>
 
