@@ -67,6 +67,25 @@ public class Application extends Controller {
         return redirect(routes.Application.sprintInfo(SprintID));
     }
 
+    public Result closeStory() {
+        Long sprintID = Long.valueOf(session().get("sprintID")).longValue();
+        
+        DynamicForm form = Form.form().bindFromRequest();
+        Long id = Long.parseLong(form.get("id"));
+        Ebean.beginTransaction();
+        try {
+            Story story = Story.find.byId(id);
+            story.finished = true;
+
+            story.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.sprintInfo(sprintID));
+    }
+
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
         session("connected", account.userName);
@@ -216,6 +235,18 @@ public class Application extends Controller {
 
             task.comments.add(comment);
             task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result removeComment() {
+
+        Ebean.beginTransaction();
+        try {
 
             Ebean.commitTransaction();
         } finally {
