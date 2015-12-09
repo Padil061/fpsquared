@@ -11,8 +11,8 @@ import views.html.*;
 public class Application extends Controller {
 
     public Result index() {
-        session().clear();
-        return ok(index.render()); }
+        return ok(index.render());
+    }
 
     public Result createUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
@@ -212,7 +212,8 @@ public class Application extends Controller {
 
     public Result sprintInfo(Long sprintID) {
         session("sprintID" , Long.toString(sprintID));
-        return ok(sprint.render()); }
+        return ok(sprint.render());
+    }
 
     public Result welcome(String userName) {
         return ok(welcome.render(userName));

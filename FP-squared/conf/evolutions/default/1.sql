@@ -39,6 +39,7 @@ create table sprint (
 
 create table story (
   storyID                   bigint auto_increment not null,
+  name                      varchar(255),
   start                     datetime(6),
   end                       datetime(6),
   finished                  tinyint(1) default 0,

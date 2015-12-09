@@ -48,4 +48,16 @@ public class Team extends Model {
 
 		return openSprints;
 	}
+
+	public List<Sprint> getClosedSprints() {
+		List<Sprint> closedSprints = new ArrayList<Sprint>();
+
+		for(Sprint sprint : sprints) {
+			if (sprint.finished == true) {
+				closedSprints.add(sprint);
+			}
+		}
+
+		return closedSprints;
+	}
 }
