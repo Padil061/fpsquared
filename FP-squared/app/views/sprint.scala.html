@@ -40,8 +40,8 @@
                                 Add task
                             </button>
                                 @for(task <- story.getTasksWithStatus(status)) {
-                                <div class="task">
-                                    <li>@task.name</li>
+                                <div id="task_@task.getId()" class="task">
+                                    <li><b>@task.name</b></li>
                                     <a data-remodal-target="taskViewModal_@task.getId()">
                                         <i style="float:right; padding-right:15px;" class="icon-edit"></i>
                                     </a>

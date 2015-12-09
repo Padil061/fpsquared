@@ -1,27 +1,32 @@
 @main("User Dashboard") {
 
 <div id="prompt">
-@Application.authenticateUser()
+    @Application.authenticateUser()
 </div>
 <div class="main-content">
     <div class="team-container">
 
         <div id="teams">
             <!-- Goes to a specific team dashboard -->
-            <a href="#">
-                <div class="team">
-                    @if(session().containsKey("connected")) {
-                        @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
-                            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                                @if(account.team != null) {
-                                    Your Team is : @account.team.name
-                                } else {
-                                    Join a team by using the drop-down menu
-                                }
-                            }
-                        }
+            <div id="team">
+                @if(session().containsKey("connected")) {
+                    @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
+                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                        @if(account.team != null) {
+                            Your Team is : @account.team.name
+                    } else {
+                            Join a team by using the drop-down menu
                     }
-                </div>
+            </div>
+            <div id="teamMembers">
+                Team Members :
+                    @for(teamMember <- account.team.members) {
+                        @teamMember.userName
+                    }
+            </div>
+                    }
+                }
+            }
             </a>
         </div>
     </div>

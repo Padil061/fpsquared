@@ -170,7 +170,7 @@ text-align: center;
   justify-content: space-around;
 }
 
-.team {
+#team {
   background: antiquewhite;
   padding: 5px;
   width: 600px;
@@ -181,6 +181,19 @@ text-align: center;
   font-weight: bold;
   font-size: 2em;
   text-align: center;
+}
+
+#teamMembers {
+    background: #F2711C;
+    padding: 5px;
+    width: 600px;
+    height: 150px;
+    margin-top: 75px;
+    line-height: 150px;
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
 }
 
 /*
@@ -279,7 +292,6 @@ height: 85px;
     height: 50px;
     width: 200px;
     margin: 10px;
-    background: #515151;
 }
 
 /* Task modal */

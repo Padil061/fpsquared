@@ -56,27 +56,8 @@ $('#hide-sidebar').click(function(e) {
 });
 
 /* Dragging tasks */
-/*
-function allowDrop(ev) {
-    ev.preventDefault();
-}
 
-function drag(ev) {
-    ev.dataTransfer.setData("src", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var src = document.getElementById(ev.dataTransfer.getData("src"));
-    var srcParent = src.parentNode;
-    var tgt = ev.currentTarget.firstElementChild;
-
-    ev.currentTarget.replaceChild(src, tgt);
-    srcParent.appendChild(tgt);
-}
-*/
-
-   $(".task").draggable({
+$(".task").draggable({
         revert: true,
         zIndex: 10,
         snap: ".taskStatus",
@@ -85,34 +66,40 @@ function drop(ev) {
         start: function (event, ui) {
             lastPlace = $(this).parent();
         }
-    });
+});
 
-    $("#taskStatus_Created").droppable({
+$("#taskStatus_Created").droppable({
         drop: function (event, ui) {
+            event.preventDefault();
             var dropped = ui.draggable;
-            var droppedOn = this;
 
-            $(droppedOn).detach().appendTo($(dropped));
-            $(dropped).detach().prependTo($(lastPlace));
-
-        console.log('created');
+            $(dropped).detach().appendTo($("#taskStatus_Created"));
         }
-    });
+});
 
-    $("#taskStatus_Started").droppable({
+$("#taskStatus_Started").droppable({
         drop: function (event, ui) {
-            console.log('started');
-        }
-    });
+            event.preventDefault();
+            var dropped = ui.draggable;
 
-    $("#taskStatus_Review").droppable({
-        drop: function (event, ui) {
-            console.log('review');
+            $(dropped).detach().appendTo($("#taskStatus_Started"));
         }
-    });
+});
 
-    $("#taskStatus_Complete").droppable({
+$("#taskStatus_Review").droppable({
         drop: function (event, ui) {
-            console.log('complete');
+            event.preventDefault();
+            var dropped = ui.draggable;
+
+            $(dropped).detach().appendTo($("#taskStatus_Review"));
         }
-    });
+});
+
+$("#taskStatus_Complete").droppable({
+        drop: function (event, ui) {
+            event.preventDefault();
+            var dropped = ui.draggable;
+
+            $(dropped).detach().appendTo($("#taskStatus_Complete"));
+        }
+});
