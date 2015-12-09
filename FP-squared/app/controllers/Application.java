@@ -10,7 +10,9 @@ import views.html.*;
 
 public class Application extends Controller {
 
-    public Result index() { return ok(index.render()); }
+    public Result index() {
+        session().clear();
+        return ok(index.render()); }
 
     public Result createUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
@@ -70,8 +72,8 @@ public class Application extends Controller {
     }
 
     public Result joinTeam() {
-        //DynamicForm form = Form.form().bindFromRequest();
-        DynamicForm form = new DynamicForm().bindFromRequest();
+        DynamicForm form = Form.form().bindFromRequest();
+
         Long id = Long.parseLong(form.get("id"));
         Ebean.beginTransaction();
         try {
@@ -86,7 +88,7 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
 
-        return redirect(routes.Application.teamDashboard(id));
+        return redirect(routes.Application.dashboard());
     }
 
     public Result closeSprint() {
@@ -107,27 +109,6 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
         return redirect(routes.Application.dashboard());
-    }
-
-    public Result changeView(String view) {
-        Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
-
-        session(view, account.userName);
-
-        if(view.equals("sprint")) {
-            return redirect(routes.Application.dashboard());
-        }
-        else if(view.equals("team")) {
-        //    Team team = account.team;
-
-            return redirect(routes.Application.dashboard());
-        }
-        else if(view.equals("story")) {
-            return redirect(routes.Application.dashboard());
-        }
-        else {
-            return redirect(routes.Application.dashboard());
-        }
     }
 
     public Result createTask() {
@@ -207,8 +188,6 @@ public class Application extends Controller {
     public Result login() { return ok(login.render()); }
 
     public Result dashboard() { return ok(dashboard.render()); }
-
-    public Result teamDashboard(Long teamID) { return ok(teamdashboard.render(teamID)); }
 
     public Result sprintInfo() { return ok(sprint.render()); }
 
