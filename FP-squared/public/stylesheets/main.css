@@ -3,9 +3,6 @@ body{
   padding:0;
   min-width: 320px;
 }
-body > div{
-  /*padding-top: 20px;*/
-}
 label {
   display:block;
 }
@@ -41,7 +38,7 @@ ul.nav.navbar-nav {
 }
 #landing-content{
 background-color: #0c0b9e;
-height: 560px;
+height: 600px;
 }
 .user-info {
 float: left;
@@ -60,6 +57,10 @@ border-radius: 20px;
 }
 .media-body {
   color:white;
+  padding-top: 20px;
+}
+.media-heading {
+  margin-top:20px 0;
 }
 .the-form{
 color:white;
@@ -71,7 +72,7 @@ left: 965px;
 background-color: #8bc7ff;
 border: 3px solid black;
 border-radius: 25px;
-bottom: 175px;
+bottom: 200px;
 }
 
 .failed-form{
@@ -123,6 +124,7 @@ text-align: center;
   height:100px;
   text-align:center;
   margin:0 auto;
+  padding-top: 30px;
 }
 
 #sprints{
@@ -173,7 +175,7 @@ text-align: center;
   padding: 5px;
   width: 600px;
   height: 150px;
-  margin-top: 10px;
+  margin-top: 75px;
   line-height: 150px;
   color: black;
   font-weight: bold;
@@ -208,6 +210,10 @@ margin-top: 40px;
 background-color: #7fc3f0;
 border-radius: 25px;
 border: 10px;
+}
+
+.credentials {
+margin:0 10px;
 }
 
 /*
