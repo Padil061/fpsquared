@@ -1,5 +1,6 @@
 @main("User Dashboard") {
 
+<<<<<<< HEAD
 <a id="menuBar" class="btn btn-primary">
     <span class="glyphicon glyphicon-chevron-left">Show Menu</span>
 </a>
@@ -19,6 +20,8 @@
     </a>
 </div>
 
+=======
+>>>>>>> d34a3dd9fd1cbd6bc7280d734e2b8380f821ed44
 <div id="prompt">
 @Application.authenticateUser()
 </div>
@@ -29,12 +32,16 @@
             <!-- Goes to a specific team dashboard -->
             <a href="#">
                 <div class="team">
-                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                        @if(account.team != null) {
-                            @account.team.name
-                        } else {
-                            Join a team by using the drop-down menu
+                    @if(session().containsKey("connected")) {
+                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                            @if(account.team != null) {
+                                @account.team.name
+                            } else {
+                                Join a team by using the drop-down menu
+                            }
                         }
+                    } else {
+                        Join a team by using the drop-down menu
                     }
                 </div>
             </a>

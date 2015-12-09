@@ -27,7 +27,7 @@ POST    /join-team              @controllers.Application.joinTeam()
 POST    /create-sprint             @controllers.Application.createSprint()
 
 # Create Story which is associated with a Sprint
-#POST    /create-story              @controllers.Application.createStory()
+POST    /create-story              @controllers.Application.createStory()
 
 # Create Task which is associated with a Story
 #POST    /create-task               @controllers.Application.createTask()
@@ -38,9 +38,6 @@ POST    /create-sprint             @controllers.Application.createSprint()
 # Add a checklist item to a task
 #POST    /add-checklistitem         @controllers.Application.addChecklistitem()
 
-# Reset session values to adjust the dashbaord to the view clicked on
-GET    /change-view               @controllers.Application.changeView(view : String)
-
 # Close a sprint
 POST /close-sprint                  @controllers.Application.closeSprint()
 
@@ -50,14 +47,11 @@ GET     /welcome                   @controllers.Application.welcome(userName : S
 # See User Dashboard
 GET     /dashboard                 @controllers.Application.dashboard()
 
-# Show Team dashboard view with Sprints & Members of team
-GET     /dashboard/team/:teamID    @controllers.Application.teamDashboard(teamID : Long)
-
 # Show Sprint information that will display Stories & Tasks inside of stories
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
-GET     /sprint-info                @controllers.Application.sprintInfo()
+GET     /dashboard/sprint                @controllers.Application.sprintInfo(sprintID: Long)
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)

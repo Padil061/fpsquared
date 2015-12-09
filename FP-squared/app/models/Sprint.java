@@ -35,7 +35,7 @@ public class Sprint extends Model {
      * Sprint.stories to access
      */
     @OneToMany(mappedBy = "sprint", cascade = CascadeType.ALL)
-    private List<Story> stories;
+    public List<Story> stories;
 
     @ManyToOne(cascade = CascadeType.ALL)
     public Team team;
