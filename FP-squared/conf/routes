@@ -56,6 +56,12 @@ GET     /welcome                   @controllers.Application.welcome(userName : S
 # See User Dashboard
 GET     /dashboard                 @controllers.Application.dashboard()
 
+# See failed login screen
+GET     /failed-login                 @controllers.Application.failedLogin()
+
+# See account creation failed screen
+GET     /failed-account-creation                 @controllers.Application.accountCreationFailed()
+
 # Show Sprint information that will display Stories & Tasks inside of stories
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 

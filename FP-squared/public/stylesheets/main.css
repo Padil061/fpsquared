@@ -72,6 +72,18 @@ border: 3px solid black;
 border-radius: 25px;
 bottom: 175px;
 }
+
+.failed-form{
+color:white;
+width: 250px;
+height: 350px;
+border-style: inset;
+background-color: #8bc7ff;
+border: 3px solid black;
+border-radius: 25px;
+text-align: center;
+}
+
 #umbrella {
   height:450px;
   width:85%;

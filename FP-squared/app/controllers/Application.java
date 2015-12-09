@@ -16,6 +16,11 @@ public class Application extends Controller {
 
     public Result createUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
+
+        if (Account.find.where().eq("userName", account.userName).findUnique() != null) {
+            return redirect(routes.Application.accountCreationFailed());
+        }
+
         account.save();
         session("connected", account.userName);
         return redirect(routes.Application.welcome(account.userName));
@@ -87,9 +92,14 @@ public class Application extends Controller {
 
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
-        session("connected", account.userName);
 
-        return redirect(routes.Application.dashboard());
+        if (Account.authenticate(account.userName, account.password)) {
+            return redirect(routes.Application.dashboard());
+        } else {
+            return redirect(routes.Application.failedLogin());
+        }
+
+
     }
 
     public Result logout() {
@@ -267,6 +277,14 @@ public class Application extends Controller {
 
     public Result welcome(String userName) {
         return ok(welcome.render(userName));
+    }
+
+    public Result failedLogin() {
+        return ok(failedlogin.render());
+    }
+
+    public Result accountCreationFailed() {
+        return ok(accountcreationfailed.render());
     }
 
 }
