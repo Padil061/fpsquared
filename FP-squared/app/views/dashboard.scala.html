@@ -13,13 +13,11 @@
                     @if(session().containsKey("connected")) {
                      @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
                             @if(account.team != null) {
-                                @account.team.name
+                                Your Team is : @account.team.name
                             } else {
                                 Join a team by using the drop-down menu
                             }
                         }
-                    } else {
-                        Join a team by using the drop-down menu
                     }
                 </div>
             </a>

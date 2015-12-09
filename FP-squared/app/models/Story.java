@@ -5,6 +5,7 @@ import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,18 @@ public class Story  extends Model {
      */
     @OneToMany(mappedBy = "story", cascade= CascadeType.ALL)
     public List<Task> tasks;
+
+    public List<Story> getOpenStories() {
+        List<Story> openStories = new ArrayList<Story>();
+
+        for(Story story : sprint.stories) {
+            if (story.finished == false) {
+                openStories.add(story);
+            }
+        }
+
+        return openStories;
+    }
 
     public static Model.Finder<Long, Story> find = new Model.Finder<Long, Story>(Story.class);
 }

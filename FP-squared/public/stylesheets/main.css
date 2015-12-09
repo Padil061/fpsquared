@@ -21,6 +21,7 @@ border-radius: 20px
   height: 100%;
   margin: 0 auto;
   position: relative;
+  display:flexbox;
 }
 .navbar {
   margin-bottom:0;
@@ -152,7 +153,7 @@ bottom: 175px;
 .team {
   background: antiquewhite;
   padding: 5px;
-  width: 200px;
+  width: 600px;
   height: 150px;
   margin-top: 10px;
   line-height: 150px;

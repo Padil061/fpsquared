@@ -102,9 +102,9 @@ public class Application extends Controller {
     public static String authenticateUser() {
         String user = session("connected");
         if(user != null) {
-            return "Hello " + user + " welcome to your dashboard!";
+            return "Hello " + user + ", welcome to your dashboard!";
         } else {
-            return "Oops, you are not connected";
+            return "Oops, you are not connected...";
         }
     }
 

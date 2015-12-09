@@ -74,7 +74,7 @@
 
             <!-- sprint dropdown -->
             <li id="sprintDropdown" class="dropdown">
-                <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
+                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
@@ -159,7 +159,7 @@
             @if(session.containsKey("sprintID")) {
             <!-- story dropdown -->
             <li id="storyDropdown" class="dropdown">
-                <button style="margin-top: 7px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Story
+                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Story
                     <span class="caret"></span></button>
                 <ul id="storyMenu" class="dropdown-menu" role="menu">
                     <li><a data-remodal-target="storyCreationModal">Create a Story</a></li>
