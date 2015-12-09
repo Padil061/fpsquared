@@ -1,97 +1,95 @@
 @main("Sprint Information") {
 
-<a id="menuBar" class="btn btn-primary ui sidebar">
-    <span class="glyphicon glyphicon-chevron-left">Stories</span>
-</a>
-
-<div class="ui vertical inverted sidebar menu left overaly visible">
-       <a class="view" href="#">
-           <i class="icon-fighter-jet"></i>
+<div class="ui vertical inverted sidebar menu left uncover visible">
+       <a class="item" href="#">
            Sprint View
        </a>
-        <a class="view" href="#">
+       <a class="item" href="#">
            Team View
-    </a>
-       <a class="view" href="#">
+       </a>
+       <a class="item" href="#">
           Story View
-    </a>
+       </a>
 </div>
 
-<div class="middle-bar">
-    <div class="content-container">
-        @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
-            @if(sprint.stories != null) {
-                @for(story <- sprint.stories) {
-                    <div class="story">
-                        <i class="fa fa-rocket"></i>
-                        <h2 style="text-align: center;">@story.name</h2>
-                            <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" data-remodal-target="taskCreationModal">
-                                Add task
-                            </button>
-                        @if(story.tasks != null) {
-                            @for(task <- story.tasks) {
-                                <div class="task" data-remodal-id="@task.getId()">
-                                    @task.name
-                                    <a data-remodal-target="taskViewModal"><i style= "float: right;" class="icon-edit"></i></a>
-                                </div>
+
+<div class="dimmed pusher">
+    <div class="middle-bar">
+        <div class="content-container">
+            @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
+                @if(sprint.stories != null) {
+                    @for(story <- sprint.stories) {
+                        <div class="story">
+                            <i class="fa fa-rocket"></i>
+                            <h2 style="text-align: center;">@story.name</h2>
+                                <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" data-remodal-target="taskCreationModal">
+                                    Add task
+                                </button>
+                            @if(story.tasks != null) {
+                                @for(task <- story.tasks) {
+                                    <div class="task" data-remodal-id="@task.getId()">
+                                        @task.name
+                                        <a data-remodal-target="taskViewModal"><i style= "float: right;" class="icon-edit"></i></a>
+                                    </div>
+                                }
                             }
-                        }
-                    </div>
+                        </div>
+                    }
                 }
             }
-        }
-    </div>
-</div>
-
-<div class="remodal-bg">
-    <div class="remodal" data-remodal-id="taskCreationModal">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        @helper.form(action = routes.Application.createTask, 'id -> "taskForm") {
-        <h1>Create a Task</h1>
-        <p>
-            Create a Task for your Story.
-        </p>
-
-        <div class="form-group">
-            <input id="taskName" type="text" placeholder="Task Name" name="name" required>
-            <select name="status">
-                <option>Created</option>
-                <option>Started</option>
-                <option>In Review</option>
-                <option>Complete</option>
-            </select>
         </div>
-        <br>
-        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-        <button id="createTask" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
-        } <!-- end form -->
     </div>
-</div>
 
-<!-- taskViewModal-->
-<div class="remodal-bg">
-    <div class="remodal" data-remodal-id="taskViewModal">
-        <button data-remodal-action="close" class="remodal-close"></button>
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="taskCreationModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.createTask, 'id -> "taskForm") {
+            <h1>Create a Task</h1>
+            <p>
+                Create a Task for your Story.
+            </p>
 
-        <h1>Task</h1>
-        <p>
-
-        </p>
-        @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
-        <h2>Create Comments</h2>
-        <div class="form-group">
-            <input id="commentName" type="text" placeholder="Task Name" name="name" required>
-            <select name="status">
-                <option>Created</option>
-                <option>Started</option>
-                <option>In Review</option>
-                <option>Complete</option>
-            </select>
+            <div class="form-group">
+                <input id="taskName" type="text" placeholder="Task Name" name="name" required>
+                <select name="status">
+                    <option>Created</option>
+                    <option>Started</option>
+                    <option>In Review</option>
+                    <option>Complete</option>
+                </select>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="createTask" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            } <!-- end form -->
         </div>
-        <br>
-        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-        <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
-        } <!-- end form -->
+    </div>
+
+    <!-- taskViewModal-->
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="taskViewModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+
+            <h1>Task</h1>
+            <p>
+
+            </p>
+            @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
+            <h2>Create Comments</h2>
+            <div class="form-group">
+                <input id="commentName" type="text" placeholder="Task Name" name="name" required>
+                <select name="status">
+                    <option>Created</option>
+                    <option>Started</option>
+                    <option>In Review</option>
+                    <option>Complete</option>
+                </select>
+            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            } <!-- end form -->
+        </div>
     </div>
 </div>
 
