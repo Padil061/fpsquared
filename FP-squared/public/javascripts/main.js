@@ -76,34 +76,43 @@ function drop(ev) {
 }
 */
 
-   $(".taskStatus li").draggable({
+   $(".task").draggable({
         revert: true,
         zIndex: 10,
-        snap: ".taskStatus li",
+        snap: ".taskStatus",
         snapMode: "inner",
-        snapTolerance: 40,
+        snapTolerance: 70,
         start: function (event, ui) {
             lastPlace = $(this).parent();
         }
     });
 
-    $(".taskStatus li").droppable({
+    $("#taskStatus_Created").droppable({
         drop: function (event, ui) {
-            var droppedDiv = ui.draggable;
+            var dropped = ui.draggable;
             var droppedOn = this;
 
-            var dropped = droppedDiv[0];
+            $(droppedOn).detach().appendTo($(dropped));
+            $(dropped).detach().prependTo($(lastPlace));
 
-       //     if ($(droppedOn).children().length > 0) {
-                $(droppedOn).detach().appendTo($(lastPlace));
-                $(droppedDiv).remove();
-                $(dropped).detach().appendTo($(droppedOn));
+        console.log('created');
+        }
+    });
 
-       //     }
-/*
-            $(dropped).detach().css({
-                top: 0,
-                left: 0
-            }).prependTo($(droppedOn)); */
+    $("#taskStatus_Started").droppable({
+        drop: function (event, ui) {
+            console.log('started');
+        }
+    });
+
+    $("#taskStatus_Review").droppable({
+        drop: function (event, ui) {
+            console.log('review');
+        }
+    });
+
+    $("#taskStatus_Complete").droppable({
+        drop: function (event, ui) {
+            console.log('complete');
         }
     });
