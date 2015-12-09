@@ -18,14 +18,16 @@
                             Join a team by using the drop-down menu
                     }
             </div>
+            @if(account.team != null) {
             <div id="teamMembers">
                 Team Members :
-                    @if(account.team != null && account.team.members.size() > 0) {
+                    @if(account.team.members.size() > 0) {
                         @for(teamMember <- account.team.members) {
                             @teamMember.userName
                         }
                     }
             </div>
+                        }
                     }
                 }
             }
