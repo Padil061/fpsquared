@@ -92,8 +92,8 @@ public class Application extends Controller {
 
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
-
         if (Account.authenticate(account.userName, account.password)) {
+            session("connected", account.userName);
             return redirect(routes.Application.dashboard());
         } else {
             return redirect(routes.Application.failedLogin());
