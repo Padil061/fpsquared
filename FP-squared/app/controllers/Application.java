@@ -117,7 +117,6 @@ public class Application extends Controller {
             return redirect(routes.Application.dashboard());
         }
         else if(view.equals("team")) {
-        //    Team team = account.team;
 
             return redirect(routes.Application.dashboard());
         }
@@ -175,6 +174,26 @@ public class Application extends Controller {
         }
         return redirect(routes.Application.dashboard());
     }
+
+    //public Result deleteCheckListItem(){
+      
+      /*  DynamicForm form = Form.form().bindFromRequest();
+        //Long id = Long.parseLong(form.get("id"));
+        
+        //Ebean.beginTransaction();
+        //try{
+            //ChecklistItem checklistItem = ChecklistItem.find.byId(id);
+            checklistItem.delete();
+
+            //SqlUpdate deleteCheckListeItems = Ebean.createSqlUpdate("DELETE from checklist_item WHERE checked = 1");
+            //deleteCheckListeItems.execut();
+        }
+        finally{
+            Ebean.endTransaction();
+        }
+        return redirect(routes.Application.dashboard());
+        */
+    //}
 
     public Result createComment() {
 
