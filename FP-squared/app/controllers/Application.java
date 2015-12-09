@@ -28,8 +28,7 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
-    public Result createSprint()
-    {
+    public Result createSprint() {
         Sprint sprint = Form.form(Sprint.class).bindFromRequest().get();
 
         Ebean.beginTransaction();
