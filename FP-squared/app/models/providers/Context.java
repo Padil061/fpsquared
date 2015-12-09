@@ -1,7 +1,7 @@
 package models.providers;
 
 public class Context {
-    private String[] storyStatusStates = {"Created", "Started", "In Review", "Complete"};
+    private String[] storyStatusStates = {"Created", "Started", "Review", "Complete"};
 
     private static Context ourInstance = new Context();
 

@@ -86,10 +86,9 @@
             <div class="form-group">
                 <input id="taskName" type="text" placeholder="Task Name" name="name" required>
                 <select name="status">
-                    <option>Created</option>
-                    <option>Started</option>
-                    <option>In Review</option>
-                    <option>Complete</option>
+                    @for(status <- models.providers.Context.getInstance().getStoryStatusStates()) {
+                        <option>@status</option>
+                    }
                 </select>
             </div>
             <br>
