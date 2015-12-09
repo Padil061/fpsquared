@@ -9,7 +9,6 @@ $( document ).ready(function() {
 });
 
 // Event listeners
-
 $('#createTeam').click(function(e) {
         $('#teamForm').submit();
 });

@@ -17,11 +17,12 @@ border-radius: 20px
   text-align:center;
 }
 .content-container{
-  width: 1000px;
-  height: 100%;
-  margin: 0 auto;
-  position: relative;
-  display:flexbox;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 .navbar {
   margin-bottom:0;
@@ -90,22 +91,27 @@ text-align: center;
 }
 .middle-bar{
   background-color: #E0F0D8;
-  height:560px;
+  height:750px;
 }
 .middle-bar #stories{
   max-width: 650px;
   text-align: center;
 }
 .story {
-    width: 525px;
+    width: 47%;
     border: 1px solid blue;
+    float:left;
+    margin: 15px 15px;
+}
+.story:nth-child(2) {
+    float:right;
 }
 .story .task{
   font-size: 25px;
-  width: 120px;
+  width: 300px;
   display: inline-block;
   border: 1px solid black;
-  margin: 50px 195px;
+  margin: 10px 120px;
 }
 .main-content{
   background-color: #ddd;

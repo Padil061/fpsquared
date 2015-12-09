@@ -1,11 +1,28 @@
 @main("Sprint Information") {
 
+<a id="menuBar" class="btn btn-primary ui sidebar">
+    <span class="glyphicon glyphicon-chevron-left">Stories</span>
+</a>
+
+<div class="ui vertical inverted sidebar menu left overaly visible">
+       <a class="view" href="#">
+           <i class="icon-fighter-jet"></i>
+           Sprint View
+       </a>
+        <a class="view" href="#">
+           Team View
+    </a>
+       <a class="view" href="#">
+          Story View
+    </a>
+</div>
+
 <div class="middle-bar">
     <div class="content-container">
         @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
             @if(sprint.stories != null) {
                 @for(story <- sprint.stories) {
-                    <div class="story" style="float:left; margin-left: -60px;">
+                    <div class="story">
                         <i class="fa fa-rocket"></i>
                         <h2 style="text-align: center;">@story.name</h2>
                             <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" data-remodal-target="taskCreationModal">
