@@ -39,6 +39,10 @@ $('#createComment').click(function(e) {
         $('#commentForm').submit();
 });
 
+$('#createChecklistItem').click(function(e) {
+        $('#checkListForm').submit();
+});
+
 $('#menuBar').click(function(e) {
         $('.demo.sidebar')
           .sidebar('toggle');

@@ -32,17 +32,14 @@ POST    /create-story              @controllers.Application.createStory()
 # Create Task which is associated with a Story
 POST    /create-task               @controllers.Application.createTask()
 
-# Add a comment to a task
-#POST    /add-comment               @controllers.Application.createComment()
+# Add a check list item to a task
+POST    /add-check-list-item               @controllers.Application.createChecklistItem()
 
 # Add a comment to a task
 POST    /add-comment               @controllers.Application.createComment()
 
 # Add a comment to a task
 #DELETE    /remove-comment               @controllers.Application.removeComment()
-
-# Add a checklist item to a task
-#POST    /add-checklistitem         @controllers.Application.addChecklistitem()
 
 # Close a sprint
 POST /close-sprint                  @controllers.Application.closeSprint()
