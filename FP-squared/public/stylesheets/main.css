@@ -268,3 +268,27 @@ margin-top:25px;
 width:25%;
 border: 1px black solid;
 }
+
+.task {
+margin:20px 0;
+height: 85px;
+}
+
+.task li {
+    display: inline-block;
+    height: 50px;
+    width: 200px;
+    margin: 10px;
+    background: #515151;
+}
+
+/* Task modal */
+
+[data-remodal-id*=taskViewModal_] {
+height:800px !important;
+}
+
+#commentName {
+width: 500px;
+height: 125px;
+}

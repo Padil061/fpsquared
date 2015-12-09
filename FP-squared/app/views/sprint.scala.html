@@ -41,12 +41,31 @@
                             </button>
                                 @for(task <- story.getTasksWithStatus(status)) {
                                 <div class="task">
-                                    <div class="task" data-remodal-id="@task.getId()">
-                                        @task.name
-                                        <a data-remodal-target="taskViewModal"><i style= "float: right;" class="icon-edit"></i></a>
-                                    </div>
+                                    <li>@task.name</li>
+                                    <a data-remodal-target="taskViewModal_@task.getId()">
+                                        <i style="float:right; padding-right:15px;" class="icon-edit"></i>
+                                    </a>
                                 </div>
-                                }<!-- end of tasks in that column-->
+
+                                    <!-- taskViewModal-->
+                                    <div id="taskInfo" class="remodal-bg">
+                                        <div class="remodal" data-remodal-id="taskViewModal_@task.getId()">
+                                            <button data-remodal-action="close" class="remodal-close"></button>
+
+                                            <h1>@task.name</h1>
+
+                                            @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
+                                            <h2>Create Comments</h2>
+                                            <div class="form-group">
+                                                <textarea id="commentName" type="text" placeholder="Enter text here" name="name" required></textarea>
+                                            </div>
+                                            <br>
+                                            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                                            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Post</button>
+                                            } <!-- end form -->
+                                        </div>
+                                    </div>
+                                }<!-- end of tasks in that column -->
                             </div>
                             }<!-- end of top for loop, column for each status-->
                     }
@@ -76,33 +95,6 @@
             <br>
             <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
             <button id="createTask" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
-            } <!-- end form -->
-        </div>
-    </div>
-
-    <!-- taskViewModal-->
-    <div class="remodal-bg">
-        <div class="remodal" data-remodal-id="taskViewModal">
-            <button data-remodal-action="close" class="remodal-close"></button>
-
-            <h1>Task</h1>
-            <p>
-
-            </p>
-            @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
-            <h2>Create Comments</h2>
-            <div class="form-group">
-                <input id="commentName" type="text" placeholder="Task Name" name="name" required>
-                <select name="status">
-                    <option>Created</option>
-                    <option>Started</option>
-                    <option>In Review</option>
-                    <option>Complete</option>
-                </select>
-            </div>
-            <br>
-            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
             } <!-- end form -->
         </div>
     </div>

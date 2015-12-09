@@ -67,7 +67,7 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        session("story", Long.toString(story.getId()));
+        session("storyID", Long.toString(story.getId()));
         return redirect(routes.Application.sprintInfo(SprintID));
     }
 
@@ -163,9 +163,11 @@ public class Application extends Controller {
 
         session("task", Long.toString(task.getId()));
 
+        Long storyId = Long.valueOf(session().get("storyID")).longValue();
+        Long sprintID = Long.valueOf(session().get("sprintID")).longValue();
+
         Ebean.beginTransaction();
         try {
-            Long storyId = Long.valueOf(session().get("story")).longValue();
             Story story = Story.find.byId(storyId);
 
             story.tasks.add(task);
@@ -177,8 +179,8 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
 
-        Long sprintID = Long.valueOf(session().get("sprintID")).longValue();
-        return redirect(routes.Application.sprintInfo(sprintID));
+
+        return redirect(routes.Application.renderStory(sprintID, storyId));
     }
 
     public Result createChecklistItem() {
