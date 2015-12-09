@@ -66,7 +66,10 @@ GET     /failed-account-creation                 @controllers.Application.accoun
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
-GET     /dashboard/sprint                @controllers.Application.sprintInfo(sprintID: Long)
+GET     /dashboard/sprint/:sprintID/                @controllers.Application.sprintInfo(sprintID: Long)
+
+# Displays the story information
+GET     /dashboard/sprint/:sprintID/story/:storyID/            @controllers.Application.renderStory(sprintID: Long, storyID: Long)
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)

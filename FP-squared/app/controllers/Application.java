@@ -275,6 +275,10 @@ public class Application extends Controller {
         return ok(sprint.render());
     }
 
+    public Result renderStory(Long sprintID, Long storyID) {
+        session("storyID", Long.toString(storyID));
+        return ok(sprint.render());
+    }
     public Result welcome(String userName) {
         return ok(welcome.render(userName));
     }
