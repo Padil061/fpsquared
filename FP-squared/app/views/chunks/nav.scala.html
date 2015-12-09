@@ -11,13 +11,19 @@
             @if(session.containsKey("connected")) {
             <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
 
+            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
             <!-- team dropdown -->
             <li id="teamDropdown" class="dropdown">
-                <button style="margin: 7px 10px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Team
+                <button style="margin: 7px 10px;" class="btn btn-primary dropdown-toggle" type="button"
+                        data-toggle="dropdown">Team
                     <span class="caret"></span></button>
                 <ul id="teamMenu" class="dropdown-menu" role="menu">
+                    @if(account.team == null) {
                     <li><a data-remodal-target="teamCreationModal">Create a Team</a></li>
                     <li><a data-remodal-target="teamJoinModal">Join a Team</a></li>
+                    } else {
+                    <li><a href="@routes.Application.leaveTeam()">Leave a team</a></li>
+                    }
                 </ul>
             </li>
 
@@ -29,6 +35,7 @@
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
                     <h1>Team Creation</h1>
+
                     <p>
                         Create a Team so you can start your Sprints! It's as simple as just picking your team name!
                     </p>
@@ -38,7 +45,8 @@
                     </div>
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                    <button id="createTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create
+                    </button>
                     } <!-- end form -->
                 </div>
             </div>
@@ -49,6 +57,7 @@
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.joinTeam, 'id -> "joinForm") {
                     <h1>Join a team</h1>
+
                     <p>
                         Click on the dropdown to see all the teams you can join!
                     </p>
@@ -63,7 +72,9 @@
                     </div>
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button id="joinTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Join Team</button>
+                    <button id="joinTeam" type="submit" data-remodal-action="confirm" class="remodal-confirm">Join
+                        Team
+                    </button>
                     } <!-- end form -->
                 </div>
             </div>
@@ -73,22 +84,20 @@
             <!-- end of team dropdown -->
 
             <!-- sprint dropdown -->
+            @if(account.team != null) {
             <li id="sprintDropdown" class="dropdown">
-                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Sprint
+                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button"
+                        data-toggle="dropdown">Sprint
                     <span class="caret"></span></button>
                 <ul id="sprintMenu" class="dropdown-menu" role="menu">
-                    @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
-                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
                     @if(account.team != null && account.team.sprints != null) {
                     @for(sprint <- account.team.getOpenSprints()) {
-                    <li ><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
+                    <li><a href="@routes.Application.sprintInfo(sprint.getId())">@sprint.name</a></li>
                     }
                     @for(sprint <- account.team.getClosedSprints()) {
-                    <li ><a href="@routes.Application.sprintInfo(sprint.getId())"><s>@sprint.name</s></a></li>
+                    <li><a href="@routes.Application.sprintInfo(sprint.getId())"><s>@sprint.name</s></a></li>
                     }
                     <li class="divider"></li>
-                    }
-                    }
                     }
                     <li><a data-remodal-target="sprintCreationModal">Create a Sprint</a></li>
                     <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
@@ -103,6 +112,7 @@
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createSprint, 'id -> "sprintForm") {
                     <h1>Create a Sprint</h1>
+
                     <p>
                         Create a Sprint for your Team.
                     </p>
@@ -112,15 +122,17 @@
                         <label>
                             Select Start Date
                         </label>
-                        <input id="startDate" type="date"  name="start" required>
+                        <input id="startDate" type="date" name="start" required>
                         <label>
                             Select End Date
                         </label>
-                        <input id="endDate" type="date"  name="end" required>
+                        <input id="endDate" type="date" name="end" required>
                     </div>
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                    <button id="createSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">
+                        Create
+                    </button>
                     } <!-- end form -->
                 </div>
             </div>
@@ -131,14 +143,13 @@
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.closeSprint, 'id -> "closeSprintForm") {
                     <h1>Close a sprint</h1>
+
                     <p>
                         Click on the dropdown to see all the sprints that you can close.
                     </p>
 
                     <div class="form-group">
                         <select name="id">
-                            @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
-                            @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
                             @if(account.team != null) {
                             @for(sprint <- account.team.getOpenSprints()) {
                             <option value="@sprint.getId()">@sprint.name</option>
@@ -146,25 +157,28 @@
                             } else {
                             You must be in a team to close a sprint.
                             }
-                            }
-                            }
                         </select>
                     </div>
                     } <!-- end form -->
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button id="closeSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Close Sprint</button>
+                    <button id="closeSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Close
+                        Sprint
+                    </button>
 
                 </div>
             </div>
+            }
 
             <!-- end Sprint remodal -->
             <!-- end of sprint dropdown -->
+            }
 
             @if(session.containsKey("sprintID")) {
             <!-- story dropdown -->
             <li id="storyDropdown" class="dropdown">
-                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Story
+                <button style="margin: 7px 10px;" class="btn btn-success dropdown-toggle" type="button"
+                        data-toggle="dropdown">Story
                     <span class="caret"></span></button>
                 <ul id="storyMenu" class="dropdown-menu" role="menu">
                     <li><a data-remodal-target="storyCreationModal">Create a Story</a></li>
@@ -180,6 +194,7 @@
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createStory, 'id -> "storyForm") {
                     <h1>Create a Story</h1>
+
                     <p>
                         Create a Story for your Team.
                     </p>
@@ -189,7 +204,9 @@
                     </div>
                     <br>
                     <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button id="createStory" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+                    <button id="createStory" type="submit" data-remodal-action="confirm" class="remodal-confirm">
+                        Create
+                    </button>
                     } <!-- end form -->
                 </div>
             </div>

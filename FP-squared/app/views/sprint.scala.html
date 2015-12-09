@@ -53,15 +53,36 @@
                                             <button data-remodal-action="close" class="remodal-close"></button>
 
                                             <h1>@task.name</h1>
-
+                                            <h2>Check List</h2>
+                                            @for(checkListItem <- task.checklistItems) {
+                                                <input name="name" id="id" type="checkbox" checked="@checkListItem.checked">
+                                                <p>@checkListItem.text</p>
+                                            }
+                                            <h2>Create Check List Item</h2>
+                                            @helper.form(action = routes.Application.createChecklistItem, 'id -> "checkListForm") {
+                                            <div class="form-group">
+                                                <textarea id="checkListName" type="text" placeholder="Enter text here" name="text" required></textarea>
+                                                <textarea hidden name="taskID">@Long.toString(task.getId())</textarea>
+                                            </div>
+                                            }
+                                            <br>
+                                            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                                            <button id="createChecklistItem" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create Checklist</button>
+                                            <br>
+                                            <h2>Comments</h2>
+                                            @for(Comment <- task.comments) {
+                                                <b>@Comment.userName</b>
+                                                <p>@Comment.text</p>
+                                            }
                                             @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
                                             <h2>Create Comments</h2>
                                             <div class="form-group">
-                                                <textarea id="commentName" type="text" placeholder="Enter text here" name="name" required></textarea>
+                                                <textarea id="commentName" type="text" placeholder="Enter text here" name="text" required></textarea>
+                                                <textarea hidden name="taskID">@Long.toString(task.getId())</textarea>
                                             </div>
                                             <br>
                                             <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                                            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Post</button>
+                                            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Post Comment</button>
                                             } <!-- end form -->
                                         </div>
                                     </div>

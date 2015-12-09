@@ -23,6 +23,9 @@ POST    /create-team               @controllers.Application.createTeam()
 # Join a team
 POST    /join-team              @controllers.Application.joinTeam()
 
+# Join a team
+GET    /leave-team              @controllers.Application.leaveTeam()
+
 # Create Sprint which is associated with a Team
 POST    /create-sprint             @controllers.Application.createSprint()
 
@@ -32,17 +35,14 @@ POST    /create-story              @controllers.Application.createStory()
 # Create Task which is associated with a Story
 POST    /create-task               @controllers.Application.createTask()
 
-# Add a comment to a task
-#POST    /add-comment               @controllers.Application.createComment()
+# Add a check list item to a task
+POST    /add-check-list-item               @controllers.Application.createChecklistItem()
 
 # Add a comment to a task
 POST    /add-comment               @controllers.Application.createComment()
 
 # Add a comment to a task
 #DELETE    /remove-comment               @controllers.Application.removeComment()
-
-# Add a checklist item to a task
-#POST    /add-checklistitem         @controllers.Application.addChecklistitem()
 
 # Close a sprint
 POST /close-sprint                  @controllers.Application.closeSprint()

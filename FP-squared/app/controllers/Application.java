@@ -138,6 +138,25 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
+    public Result leaveTeam() {
+        Ebean.beginTransaction();
+        try {
+            Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+            account.team = null;
+
+            account.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        session().remove("sprintID");
+        session().remove("storyID");
+
+        return redirect(routes.Application.dashboard());
+    }
+
     public Result closeSprint() {
 
         DynamicForm form = Form.form().bindFromRequest();
@@ -191,10 +210,11 @@ public class Application extends Controller {
 
         Ebean.beginTransaction();
         try {
-            Long taskId = Long.parseLong(session().get("task"));
+            Long taskId = Long.valueOf(form.get("taskID")).longValue();
             Task task = Task.find.byId(taskId);
 
             ChecklistItem item = new ChecklistItem();
+            item.checked = false;
             item.text = text;
             item.task = task;
             item.save();
@@ -206,7 +226,8 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+        Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
+        return redirect(routes.Application.sprintInfo(SprintID));
     }
 
     //public Result deleteCheckListItem(){
@@ -237,7 +258,7 @@ public class Application extends Controller {
 
         Ebean.beginTransaction();
         try {
-            Long taskId = Long.parseLong(session().get("task"));
+            Long taskId = Long.valueOf(form.get("taskID")).longValue();
             Task task = Task.find.byId(taskId);
 
             Comment comment = new Comment();
@@ -253,7 +274,8 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+        Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
+        return redirect(routes.Application.sprintInfo(SprintID));
     }
 
     public Result removeComment() {
