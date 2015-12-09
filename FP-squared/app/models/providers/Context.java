@@ -12,7 +12,7 @@ public class Context {
     private Context() {
     }
 
-    String[] getStoryStatusStates() {
+    public String[] getStoryStatusStates() {
         return storyStatusStates;
     }
 }

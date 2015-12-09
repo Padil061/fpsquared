@@ -52,7 +52,7 @@ public class Story  extends Model {
                 tasksWithStatus.add(task);
             }
         }
-        
+
         return tasksWithStatus;
     }
 }
