@@ -23,6 +23,9 @@ POST    /create-team               @controllers.Application.createTeam()
 # Join a team
 POST    /join-team              @controllers.Application.joinTeam()
 
+# Join a team
+GET    /leave-team              @controllers.Application.leaveTeam()
+
 # Create Sprint which is associated with a Team
 POST    /create-sprint             @controllers.Application.createSprint()
 

@@ -45,7 +45,7 @@ public class Story  extends Model {
     public static Model.Finder<Long, Story> find = new Model.Finder<Long, Story>(Story.class);
 
     public List<Task> getTasksWithStatus(String status) {
-        List<Task> tasksWithStatus = new ArrayList<Task>();
+        List<Task> tasksWithStatus = new ArrayList<>();
 
         for (Task task : tasks) {
             if (task.status.equals(status)) {

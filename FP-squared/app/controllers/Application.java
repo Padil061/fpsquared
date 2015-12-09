@@ -138,6 +138,25 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
+    public Result leaveTeam() {
+        Ebean.beginTransaction();
+        try {
+            Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+            account.team = null;
+
+            account.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        session().remove("sprintID");
+        session().remove("storyID");
+
+        return redirect(routes.Application.dashboard());
+    }
+
     public Result closeSprint() {
 
         DynamicForm form = Form.form().bindFromRequest();
