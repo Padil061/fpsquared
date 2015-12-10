@@ -231,6 +231,22 @@ public class Application extends Controller {
         return redirect(routes.Application.sprintInfo(SprintID));
     }
 
+    public static void checkBoxChanged(Long checkListItemID) {
+        Ebean.beginTransaction();
+        try {
+            ChecklistItem item = ChecklistItem.find.byId(checkListItemID);
+            if (item.checked) {
+                item.checked = false;
+            }
+            else {
+                item.checked = true;
+            }
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+    }
+
     //public Result deleteCheckListItem(){
       
       /*  DynamicForm form = Form.form().bindFromRequest();

@@ -313,7 +313,15 @@ height: 85px;
 
 }
 
+.well div {
+    float: left;
+    margin-bottom: 20px;
+}
+
 #commentName {
-width: 500px;
-height: 125px;
+width: 80%;
+}
+
+#checkListName {
+width: 80%;
 }
