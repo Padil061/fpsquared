@@ -79,7 +79,11 @@ $("#taskStatus_Created").droppable({
             event.preventDefault();
             var dropped = ui.draggable;
 
-            var taskID = dropped[0].id.slice(-1);
+            var taskID = dropped[0].id.split('_')[1];
+
+            $.ajax(jsRoutes.controllers.Application.saveTaskStatus(taskID, "Created"))
+              .done( /*...*/ )
+              .fail( /*...*/ );
 
             $(dropped).detach().appendTo($("#taskStatus_Created"));
         }
@@ -90,6 +94,12 @@ $("#taskStatus_Started").droppable({
             event.preventDefault();
             var dropped = ui.draggable;
 
+                        var taskID = dropped[0].id.split('_')[1];
+
+                        $.ajax(jsRoutes.controllers.Application.saveTaskStatus(taskID, "Started"))
+                          .done( /*...*/ )
+                          .fail( /*...*/ );
+
             $(dropped).detach().appendTo($("#taskStatus_Started"));
         }
 });
@@ -99,6 +109,12 @@ $("#taskStatus_Review").droppable({
             event.preventDefault();
             var dropped = ui.draggable;
 
+                        var taskID = dropped[0].id.split('_')[1];
+
+                        $.ajax(jsRoutes.controllers.Application.saveTaskStatus(taskID, "Review"))
+                          .done( /*...*/ )
+                          .fail( /*...*/ );
+
             $(dropped).detach().appendTo($("#taskStatus_Review"));
         }
 });
@@ -107,6 +123,12 @@ $("#taskStatus_Complete").droppable({
         drop: function (event, ui) {
             event.preventDefault();
             var dropped = ui.draggable;
+
+                        var taskID = dropped[0].id.split('_')[1];
+
+                        $.ajax(jsRoutes.controllers.Application.saveTaskStatus(taskID, "Complete"))
+                          .done( /*...*/ )
+                          .fail( /*...*/ );
 
             $(dropped).detach().appendTo($("#taskStatus_Complete"));
         }

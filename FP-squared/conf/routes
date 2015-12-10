@@ -71,6 +71,12 @@ GET     /dashboard/sprint/:sprintID/                @controllers.Application.spr
 # Displays the story information
 GET     /dashboard/sprint/:sprintID/story/:storyID/            @controllers.Application.renderStory(sprintID: Long, storyID: Long)
 
+GET    /save_task_status                                                 controllers.Application.saveTaskStatus(taskId: Long, status: String)
+GET    /save_checklist_item_checked                          controllers.Application.saveChecklistItemChecked(checklistItemId: Long, checked: Boolean)
+
+# Javascript routing
+GET    /assets/javascripts/routes      controllers.Application.javascriptRoutes()
+
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)
 
