@@ -101,7 +101,7 @@ public class Application extends Controller {
     }
 
     public static String authenticateUser() {
-        String user = session("connected");
+        String user = session("connected");//instance of singelton pattern
         if(user != null) {
             return "Hello " + user + " welcome to your dashboard!";
         } else {
