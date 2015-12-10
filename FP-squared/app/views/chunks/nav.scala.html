@@ -7,6 +7,7 @@
             <li><a href="@routes.Application.index()">HOME</a></li>
             @if(session.containsKey("connected")) {
             <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
+            @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
             @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
             <!-- team dropdown -->
             <li id="teamDropdown" class="dropdown">
@@ -22,6 +23,7 @@
                     }
                 </ul>
             </li>
+
             <!-- Team remodal -->
             <!-- This is the interface for creating a team -->
             <div class="remodal-bg">
@@ -149,6 +151,7 @@
             }
             <!-- end Sprint remodal -->
             <!-- end of sprint dropdown -->
+            }
             }
             @if(session.containsKey("sprintID")) {
             <!-- story dropdown -->
