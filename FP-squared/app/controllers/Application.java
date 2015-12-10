@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.*;
+import play.Routes;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -16,6 +17,11 @@ public class Application extends Controller {
 
     public Result createUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
+
+        if (Account.find.where().eq("userName", account.userName).findUnique() != null) {
+            return redirect(routes.Application.accountCreationFailed());
+        }
+
         account.save();
         session("connected", account.userName);
         return redirect(routes.Application.welcome(account.userName));
@@ -28,8 +34,7 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
-    public Result createSprint()
-    {
+    public Result createSprint() {
         Sprint sprint = Form.form(Sprint.class).bindFromRequest().get();
 
         Ebean.beginTransaction();
@@ -57,13 +62,13 @@ public class Application extends Controller {
             Sprint sprint = Sprint.find.where().eq("sprintID", SprintID).findUnique();
 
             sprint.stories.add(story);
-
             sprint.save();
 
             Ebean.commitTransaction();
         } finally {
             Ebean.endTransaction();
         }
+        session("storyID", Long.toString(story.getId()));
         return redirect(routes.Application.sprintInfo(SprintID));
     }
 
@@ -88,9 +93,14 @@ public class Application extends Controller {
 
     public Result verifyUser() {
         Account account = Form.form(Account.class).bindFromRequest().get();
-        session("connected", account.userName);
+        if (Account.authenticate(account.userName, account.password)) {
+            session("connected", account.userName);
+            return redirect(routes.Application.dashboard());
+        } else {
+            return redirect(routes.Application.failedLogin());
+        }
 
-        return redirect(routes.Application.dashboard());
+
     }
 
     public Result logout() {
@@ -103,9 +113,9 @@ public class Application extends Controller {
     public static String authenticateUser() {
         String user = session("connected");//instance of singelton pattern
         if(user != null) {
-            return "Hello " + user + " welcome to your dashboard!";
+            return "This is your dashboard. Feel free to explore, create and collaborate!";
         } else {
-            return "Oops, you are not connected";
+            return "Oops, you are not connected... something happened. Sorry about that!";
         }
     }
 
@@ -125,6 +135,25 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
+
+        return redirect(routes.Application.dashboard());
+    }
+
+    public Result leaveTeam() {
+        Ebean.beginTransaction();
+        try {
+            Account account = Account.find.where().eq("userName", session().get("connected")).findUnique();
+            account.team = null;
+
+            account.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        session().remove("sprintID");
+        session().remove("storyID");
 
         return redirect(routes.Application.dashboard());
     }
@@ -154,9 +183,11 @@ public class Application extends Controller {
 
         session("task", Long.toString(task.getId()));
 
+        Long storyId = Long.valueOf(session().get("storyID")).longValue();
+        Long sprintID = Long.valueOf(session().get("sprintID")).longValue();
+
         Ebean.beginTransaction();
         try {
-            Long storyId = Long.parseLong(session().get("story"));
             Story story = Story.find.byId(storyId);
 
             story.tasks.add(task);
@@ -167,7 +198,9 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+
+
+        return redirect(routes.Application.renderStory(sprintID, storyId));
     }
 
     public Result createChecklistItem() {
@@ -178,10 +211,11 @@ public class Application extends Controller {
 
         Ebean.beginTransaction();
         try {
-            Long taskId = Long.parseLong(session().get("task"));
+            Long taskId = Long.valueOf(form.get("taskID")).longValue();
             Task task = Task.find.byId(taskId);
 
             ChecklistItem item = new ChecklistItem();
+            item.checked = false;
             item.text = text;
             item.task = task;
             item.save();
@@ -193,7 +227,24 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+        Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
+        return redirect(routes.Application.sprintInfo(SprintID));
+    }
+
+    public static void checkBoxChanged(Long checkListItemID) {
+        Ebean.beginTransaction();
+        try {
+            ChecklistItem item = ChecklistItem.find.byId(checkListItemID);
+            if (item.checked) {
+                item.checked = false;
+            }
+            else {
+                item.checked = true;
+            }
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
     }
 
     //public Result deleteCheckListItem(){
@@ -224,7 +275,7 @@ public class Application extends Controller {
 
         Ebean.beginTransaction();
         try {
-            Long taskId = Long.parseLong(session().get("task"));
+            Long taskId = Long.valueOf(form.get("taskID")).longValue();
             Task task = Task.find.byId(taskId);
 
             Comment comment = new Comment();
@@ -240,7 +291,8 @@ public class Application extends Controller {
         } finally {
             Ebean.endTransaction();
         }
-        return redirect(routes.Application.dashboard());
+        Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
+        return redirect(routes.Application.sprintInfo(SprintID));
     }
 
     public Result removeComment() {
@@ -255,6 +307,47 @@ public class Application extends Controller {
         return redirect(routes.Application.dashboard());
     }
 
+    public Result saveTaskStatus(Long taskId, String status) {
+        Ebean.beginTransaction();
+        try {
+            Task task = Task.find.byId(taskId);
+
+            task.status = status;
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        return ok();
+    }
+
+    public Result saveChecklistItemChecked(Long checklistItemId, Boolean checked) {
+        Ebean.beginTransaction();
+        try {
+            ChecklistItem item = ChecklistItem.find.byId(checklistItemId);
+
+            item.checked = checked;
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        return ok();
+    }
+
+    public Result javascriptRoutes() {
+        response().setContentType("text/javascript");
+        return ok(
+                Routes.javascriptRouter("jsRoutes",
+                        controllers.routes.javascript.Application.saveTaskStatus(),
+                        controllers.routes.javascript.Application.saveChecklistItemChecked()
+                )
+        );
+    }
+
     public Result login() { return ok(login.render()); }
 
     public Result dashboard() { return ok(dashboard.render()); }
@@ -264,8 +357,19 @@ public class Application extends Controller {
         return ok(sprint.render());
     }
 
+    public Result renderStory(Long sprintID, Long storyID) {
+        session("storyID", Long.toString(storyID));
+        return ok(sprint.render());
+    }
     public Result welcome(String userName) {
         return ok(welcome.render(userName));
     }
 
+    public Result failedLogin() {
+        return ok(failedlogin.render());
+    }
+
+    public Result accountCreationFailed() {
+        return ok(accountcreationfailed.render());
+    }
 }

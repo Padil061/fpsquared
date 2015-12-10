@@ -3,11 +3,11 @@ body{
   padding:0;
   min-width: 320px;
 }
-body > div{
-  padding-top: 20px;
-}
 label {
   display:block;
+}
+div {
+font-family: sans-serif;
 }
 input {
 color: black;
@@ -17,10 +17,12 @@ border-radius: 20px
   text-align:center;
 }
 .content-container{
-  width: 1000px;
-  height: 100%;
-  margin: 0 auto;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 .navbar {
   margin-bottom:0;
@@ -39,7 +41,7 @@ ul.nav.navbar-nav {
 }
 #landing-content{
 background-color: #0c0b9e;
-height: 560px;
+height: 600px;
 }
 .user-info {
 float: left;
@@ -58,6 +60,10 @@ border-radius: 20px;
 }
 .media-body {
   color:white;
+  padding-top: 20px;
+}
+.media-heading {
+  margin-top:20px 0;
 }
 .the-form{
 color:white;
@@ -69,30 +75,48 @@ left: 965px;
 background-color: #8bc7ff;
 border: 3px solid black;
 border-radius: 25px;
-bottom: 175px;
+bottom: 200px;
 }
+
+#failed-form{
+color:white;
+width: 250px;
+height: 350px;
+border-style: inset;
+background-color: #8bc7ff;
+border: 3px solid black;
+border-radius: 25px;
+text-align: center;
+margin: 0 auto;
+}
+
 #umbrella {
   height:450px;
   width:85%;
 }
 .middle-bar{
   background-color: #E0F0D8;
-  height:560px;
+  height:750px;
 }
 .middle-bar #stories{
   max-width: 650px;
   text-align: center;
 }
 .story {
-    width: 525px;
+    width: 47%;
     border: 1px solid blue;
+    float:left;
+    margin: 15px 15px;
+}
+.story:nth-child(2) {
+    float:right;
 }
 .story .task{
   font-size: 25px;
-  width: 120px;
+  width: 300px;
   display: inline-block;
   border: 1px solid black;
-  margin: 50px 195px;
+  margin: 10px 120px;
 }
 .main-content{
   background-color: #ddd;
@@ -104,6 +128,7 @@ bottom: 175px;
   height:100px;
   text-align:center;
   margin:0 auto;
+  padding-top: 30px;
 }
 
 #sprints{
@@ -149,17 +174,29 @@ bottom: 175px;
   justify-content: space-around;
 }
 
-.team {
+#team {
   background: antiquewhite;
   padding: 5px;
-  width: 200px;
+  width: 600px;
   height: 150px;
-  margin-top: 10px;
+  margin-top: 75px;
   line-height: 150px;
   color: black;
   font-weight: bold;
   font-size: 2em;
   text-align: center;
+}
+
+#teamMembers {
+    background: thistle;
+    width: 600px;
+    height: 325px;
+    padding-right: 285px;
+    padding-top: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
 }
 
 /*
@@ -169,6 +206,9 @@ bottom: 175px;
 #greeting {
     text-align:center;
     height:560px;
+    margin-top: 100px;
+    font-size: 50px;
+    line-height: 3;
 }
 
 /*
@@ -189,6 +229,10 @@ margin-top: 40px;
 background-color: #7fc3f0;
 border-radius: 25px;
 border: 10px;
+}
+
+.credentials {
+margin:0 10px;
 }
 
 /*
@@ -221,22 +265,63 @@ max-width: 80%;
 max-height:550px;
 }
 
-
 /* Sidebar */
 
-.view {
-    float: left;
-    margin: 50px 85px;
-    width: 125px;
+#show-sidebar {
+margin: 25px 40px;
+width: 150px;
+cursor: pointer;
+}
+
+#hide-sidebar {
+cursor:pointer;
+color:white;
 }
 
 /* Login */
 
 .login-text {
-  color:black;
+color:black;
 }
 
 #menuBar {
 margin-top:25px;
 }
 
+/* Story View */
+
+.taskStatus {
+width:25%;
+border: 1px black solid;
+}
+
+.task {
+margin:20px 0;
+height: 85px;
+}
+
+.task li {
+    display: inline-block;
+    height: 50px;
+    width: 200px;
+    margin: 10px;
+}
+
+/* Task modal */
+
+[data-remodal-id*=taskViewModal_] {
+
+}
+
+.well div {
+    float: left;
+    margin-bottom: 20px;
+}
+
+#commentName {
+width: 80%;
+}
+
+#checkListName {
+width: 80%;
+}

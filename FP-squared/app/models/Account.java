@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import controllers.routes;
 import play.data.validation.Constraints;
 
 import javax.persistence.*;
@@ -24,4 +25,15 @@ public class Account extends Model {
     public Team team;
 
     public static Model.Finder<Long, Account> find = new Model.Finder<Long, Account>(Account.class);
+
+    public static boolean authenticate(String userName, String password) {
+        Account matchingAccount = Account.find.where().eq("userName", userName).findUnique();
+        
+        if (matchingAccount == null || !password.equals(matchingAccount.password)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -21,4 +21,6 @@ public class ChecklistItem extends Model {
     public Task task;
 
     public static Model.Finder<Long, ChecklistItem> find = new Model.Finder<Long, ChecklistItem>(ChecklistItem.class);
+
+    public long getId() { return id; }
 }

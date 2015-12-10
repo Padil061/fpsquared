@@ -1,27 +1,38 @@
 @main("User Dashboard") {
 
 <div id="prompt">
-@Application.authenticateUser()
+    @Application.authenticateUser()
 </div>
 <div class="main-content">
-    <div class="content-container">
+    <div class="team-container">
 
         <div id="teams">
             <!-- Goes to a specific team dashboard -->
-            <a href="#">
-                <div class="team">
-                    @if(session().containsKey("connected")) {
-                     @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
-                            @if(account.team != null) {
-                                @account.team.name
-                            } else {
-                                Join a team by using the drop-down menu
-                            }
-                        }
+            <div id="team">
+                @if(session().containsKey("connected")) {
+                    @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
+                    @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
+                        @if(account.team != null) {
+                            Your Team is : @account.team.name
                     } else {
-                        Join a team by using the drop-down menu
+                            Join a team by using the drop-down menu
                     }
-                </div>
+            </div>
+            @if(account.team != null) {
+            <div id="teamMembers">
+                Team Members :
+                    @if(account.team.members.size() > 0) {
+                        @for(teamMember <- account.team.members) {
+                        <ul>
+                            <li style="margin-top:25px;">@teamMember.userName</li>
+                        </ul>
+                        }
+                    }
+            </div>
+                        }
+                    }
+                }
+            }
             </a>
         </div>
     </div>

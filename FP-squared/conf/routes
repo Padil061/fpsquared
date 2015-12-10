@@ -23,6 +23,9 @@ POST    /create-team               @controllers.Application.createTeam()
 # Join a team
 POST    /join-team              @controllers.Application.joinTeam()
 
+# Join a team
+GET    /leave-team              @controllers.Application.leaveTeam()
+
 # Create Sprint which is associated with a Team
 POST    /create-sprint             @controllers.Application.createSprint()
 
@@ -30,22 +33,22 @@ POST    /create-sprint             @controllers.Application.createSprint()
 POST    /create-story              @controllers.Application.createStory()
 
 # Create Task which is associated with a Story
-#POST    /create-task               @controllers.Application.createTask()
+POST    /create-task               @controllers.Application.createTask()
+
+# Add a check list item to a task
+POST    /add-check-list-item               @controllers.Application.createChecklistItem()
 
 # Add a comment to a task
-#POST    /add-comment               @controllers.Application.createComment()
-
-# Add a comment to a task
-#POST    /add-comment               @controllers.Application.createComment()
+POST    /add-comment               @controllers.Application.createComment()
 
 # Add a comment to a task
 #DELETE    /remove-comment               @controllers.Application.removeComment()
 
-# Add a checklist item to a task
-#POST    /add-checklistitem         @controllers.Application.addChecklistitem()
-
 # Close a sprint
 POST /close-sprint                  @controllers.Application.closeSprint()
+
+# Close a story
+POST /close-story                 @controllers.Application.closeStory()
 
 # Welcome New User
 GET     /welcome                   @controllers.Application.welcome(userName : String)
@@ -53,11 +56,26 @@ GET     /welcome                   @controllers.Application.welcome(userName : S
 # See User Dashboard
 GET     /dashboard                 @controllers.Application.dashboard()
 
+# See failed login screen
+GET     /failed-login                 @controllers.Application.failedLogin()
+
+# See account creation failed screen
+GET     /failed-account-creation                 @controllers.Application.accountCreationFailed()
+
 # Show Sprint information that will display Stories & Tasks inside of stories
 #GET     /dashboard/team/:teamID/sprint/:sprintID    @controllers.Application.sprintInfo()
 
 # Sprint information
-GET     /dashboard/sprint                @controllers.Application.sprintInfo(sprintID: Long)
+GET     /dashboard/sprint/:sprintID/                @controllers.Application.sprintInfo(sprintID: Long)
+
+# Displays the story information
+GET     /dashboard/sprint/:sprintID/story/:storyID/            @controllers.Application.renderStory(sprintID: Long, storyID: Long)
+
+GET    /save_task_status                                                 controllers.Application.saveTaskStatus(taskId: Long, status: String)
+GET    /save_checklist_item_checked                          controllers.Application.saveChecklistItemChecked(checklistItemId: Long, checked: Boolean)
+
+# Javascript routing
+GET    /assets/javascripts/routes      controllers.Application.javascriptRoutes()
 
 # Web Jars reference
 GET     /webjars/*file              @controllers.WebJarAssets.at(file)

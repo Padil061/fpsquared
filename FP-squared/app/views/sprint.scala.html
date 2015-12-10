@@ -1,38 +1,132 @@
 @main("Sprint Information") {
 
-<div class="middle-bar">
-    <div class="content-container">
-        <div class="story" style="float:left; margin-left: -60px;">
-            <i class="fa fa-rocket"></i>
-            <h2 style="text-align: center;">Story Name</h2>
-                <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" onclick="alert('Adding a new task')">
-                    Add task
-                </button>
-            <div class="task">
-                Task    <i style= "float: right;" class="icon-edit"></i>   
-            </div>
-            <div class="task">
-                Task
-            </div>
-            <div class="task">
-                Task
-            </div>
-        </div>
+<script type="text/javascript" src="@routes.Application.javascriptRoutes"></script>
 
-        <div class="story" style="float:right;">
-            <h2 style="text-align: center;">Story Name</h2>
-            <button style="float:right;margin-right: 10px;margin-top: -45px;" class="btn btn-success" onclick="alert('Adding a new task')">
-                Add task
-            </button>
-            <div class="task">
-                Task
+<div class="ui left inverted vertical menu sidebar">
+    <div class="item">
+        <div id="hide-sidebar" class="button">
+            <i class="sidebar icon"></i> Close Stories
+        </div>
+    </div>
+    @if(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique() != null){
+        @defining(Sprint.find.where().eq("sprintID", session.get("sprintID")).findUnique()) { sprint =>
+            @if(sprint.stories != null) {
+                @for(story <- sprint.stories) {
+                <a class="item" id="Story_@story.getId()" href="@routes.Application.renderStory(sprint.getId(), story.getId())">
+                    @story.name <i style="float:right;" class="icon-book"></i>
+                </a>
+                }
+            }
+        }
+    }
+</div>
+
+
+<div class="pusher">
+
+    <div id="show-sidebar" class="button toggler">
+        <i class="sidebar icon"></i>
+        Open Stories
+    </div>
+
+    <div class="middle-bar">
+        <div class="content-container">
+            @if(Story.find.where().eq("storyID", session.get("storyID")).findUnique() != null){
+                @defining(Story.find.where().eq("storyID", session.get("storyID")).findUnique()) { story =>
+                    @if(story.tasks != null) {
+                        @for(status <- models.providers.Context.getInstance().getStoryStatusStates()) {
+                        <div id="taskStatus_@status" class="taskStatus">
+                            <h2 style="text-align: center;">@status</h2>
+                            <button style="margin-top: -15px;" class="btn btn-success" data-remodal-target="taskCreationModal">
+                                Add task
+                            </button>
+                                @for(task <- story.getTasksWithStatus(status)) {
+                                <div id="task_@task.getId()" class="task">
+                                    <li><b>@task.name</b></li>
+                                    <a data-remodal-target="taskViewModal_@task.getId()">
+                                        <i style="float:right; padding-right:15px;cursor:pointer;" class="icon-edit"></i>
+                                    </a>
+                                </div>
+
+                                    <!-- taskViewModal-->
+                                    <div id="taskInfo" class="remodal-bg">
+                                        <div class="remodal" data-remodal-id="taskViewModal_@task.getId()">
+                                            <button data-remodal-action="close" class="remodal-close"></button>
+
+                                            <b><h1>@task.name</h1></b>
+                                            <hr>
+                                            <h2>Check List</h2>
+                                            @for(checkListItem <- task.checklistItems) {
+                                                <div class="well">
+                                                    @if(checkListItem.checked) {
+                                                        <input name="name" class="col-sm-1" id="checkedCheckList" type="checkbox" checked onchange="@Application.checkBoxChanged(checkListItem.getId())">
+                                                    } else {
+                                                        <input name="name" class="col-sm-1" id="uncheckedCheckList" type="checkbox" onchange="@Application.checkBoxChanged(checkListItem.getId())">
+                                                    }
+                                                    <div>@checkListItem.text</div>
+                                                </div>
+                                            }
+                                            <hr>
+                                            <h2>Create Check List Item</h2>
+                                            @helper.form(action = routes.Application.createChecklistItem, 'id -> "checkListForm") {
+                                            <div class="form-group">
+                                                <textarea class="col-md-4" id="checkListName" type="text" placeholder="Enter text here" name="text" required></textarea>
+                                                <textarea hidden name="taskID">@Long.toString(task.getId())</textarea>
+                                            </div>
+                                            }
+                                            <br>
+                                            <button id="createChecklistItem" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create Checklist</button>
+                                            <br>
+                                            <hr>
+                                            <h2>Comments</h2>
+                                            @for(Comment <- task.comments) {
+                                                <div class="well">
+                                                    <b class="col-sm-2">@Comment.userName :</b>
+                                                    <div>@Comment.text</div>
+                                                </div>
+                                            }
+                                            <hr>
+                                            @helper.form(action = routes.Application.createComment, 'id -> "commentForm") {
+                                            <h2>Create Comments</h2>
+                                            <div class="form-group">
+                                                <textarea class="col-md-4" id="commentName" type="text" placeholder="Enter text here" name="text" required></textarea>
+                                                <textarea hidden name="taskID">@Long.toString(task.getId())</textarea>
+                                            </div>
+                                            <br>
+                                            <button id="createComment" type="submit" data-remodal-action="confirm" class="remodal-confirm">Post Comment</button>
+                                            } <!-- end form -->
+                                        </div>
+                                    </div>
+                                }<!-- end of tasks in that column -->
+                            </div>
+                            }<!-- end of top for loop, column for each status-->
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <div class="remodal-bg">
+        <div class="remodal" data-remodal-id="taskCreationModal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            @helper.form(action = routes.Application.createTask, 'id -> "taskForm") {
+            <h1>Create a Task</h1>
+            <p>
+                Create a Task for your Story.
+            </p>
+
+            <div class="form-group">
+                <input id="taskName" type="text" placeholder="Task Name" name="name" required>
+                <select name="status">
+                    @for(status <- models.providers.Context.getInstance().getStoryStatusStates()) {
+                        <option>@status</option>
+                    }
+                </select>
             </div>
-            <div class="task">
-                Task
-            </div>
-            <div class="task">
-                Task
-            </div>
+            <br>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button id="createTask" type="submit" data-remodal-action="confirm" class="remodal-confirm">Create</button>
+            } <!-- end form -->
         </div>
     </div>
 </div>
