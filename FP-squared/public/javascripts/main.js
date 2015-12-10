@@ -133,3 +133,10 @@ $("#taskStatus_Complete").droppable({
             $(dropped).detach().appendTo($("#taskStatus_Complete"));
         }
 });
+
+function checkBoxChanged(item, itemId) {
+
+    $.ajax(jsRoutes.controllers.Application.checkBoxChanged(itemId, item.checked != null))
+                              .done( /*...*/ )
+                              .fail( /*...*/ );
+}
