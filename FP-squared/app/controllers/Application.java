@@ -330,6 +330,8 @@ public class Application extends Controller {
 
             item.checked = checked;
 
+            item.save();
+
             Ebean.commitTransaction();
         } finally {
             Ebean.endTransaction();

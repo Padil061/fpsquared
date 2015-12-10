@@ -59,9 +59,9 @@
                                             @for(checkListItem <- task.checklistItems) {
                                                 <div class="well">
                                                     @if(checkListItem.checked) {
-                                                        <input name="name" class="col-sm-1" id="checkedCheckList" type="checkbox" checked onchange="checkBoxChanged(this, @checkListItem.getId())">
+                                                        <input name="checked" class="col-sm-1" id="checkedCheckList" type="checkbox" checked onchange="saveChecklistItemChecked(this, @checkListItem.getId())">
                                                     } else {
-                                                        <input name="name" class="col-sm-1" id="uncheckedCheckList" type="checkbox" onchange="checkBoxChanged(@checkListItem.getId())">
+                                                        <input name="checked" class="col-sm-1" id="uncheckedCheckList" type="checkbox" onchange="saveChecklistItemChecked(this, @checkListItem.getId())">
                                                     }
                                                     <div>@checkListItem.text</div>
                                                 </div>

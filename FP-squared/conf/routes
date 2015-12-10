@@ -71,8 +71,11 @@ GET     /dashboard/sprint/:sprintID/                @controllers.Application.spr
 # Displays the story information
 GET     /dashboard/sprint/:sprintID/story/:storyID/            @controllers.Application.renderStory(sprintID: Long, storyID: Long)
 
-GET    /save_task_status                                                 controllers.Application.saveTaskStatus(taskId: Long, status: String)
-GET    /save_checklist_item_checked                          controllers.Application.saveChecklistItemChecked(checklistItemId: Long, checked: Boolean)
+# Changes the status for the task
+POST    /save_task_status                                                 @controllers.Application.saveTaskStatus(taskId: Long, status: String)
+
+# Flips the check list item state
+POST    /save_checklist_item_checked                          @controllers.Application.saveChecklistItemChecked(checklistItemId: Long, checked: Boolean)
 
 # Javascript routing
 GET    /assets/javascripts/routes      controllers.Application.javascriptRoutes()

@@ -134,9 +134,9 @@ $("#taskStatus_Complete").droppable({
         }
 });
 
-function checkBoxChanged(item, itemId) {
+function saveChecklistItemChecked(item, itemId) {
 
-    $.ajax(jsRoutes.controllers.Application.checkBoxChanged(itemId, item.checked != null))
+    $.ajax(jsRoutes.controllers.Application.saveChecklistItemChecked(itemId, item.checked))
                               .done( /*...*/ )
                               .fail( /*...*/ );
 }
