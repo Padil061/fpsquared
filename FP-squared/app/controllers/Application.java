@@ -111,7 +111,7 @@ public class Application extends Controller {
     }
 
     public static String authenticateUser() {
-        String user = session("connected");
+        String user = session("connected");//instance of singelton pattern
         if(user != null) {
             return "This is your dashboard. Feel free to explore, create and collaborate!";
         } else {
@@ -229,6 +229,22 @@ public class Application extends Controller {
         }
         Long SprintID = Long.valueOf(session().get("sprintID")).longValue();
         return redirect(routes.Application.sprintInfo(SprintID));
+    }
+
+    public static void checkBoxChanged(Long checkListItemID) {
+        Ebean.beginTransaction();
+        try {
+            ChecklistItem item = ChecklistItem.find.byId(checkListItemID);
+            if (item.checked) {
+                item.checked = false;
+            }
+            else {
+                item.checked = true;
+            }
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
     }
 
     //public Result deleteCheckListItem(){
