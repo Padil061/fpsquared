@@ -1,16 +1,17 @@
-@main("Login") {
+@import helper._
 
+@main("Login") {
 <div id="login-body">
     <div id="login-form">
         <h1 class="login-text" style="text-align:center;">Login</h1>
-        <form action="@routes.Application.verifyUser()" method="post">
+
+        @helper.form(action = routes.Application.verifyUser()) {
             <div class="user-info">
                 <label class="login-text">Enter User Name: </label><input class="credentials" type="text" name="userName">
                 <label class="login-text">Enter Password: </label><input  class="credentials" type="password" name="password">
                 <button class="submit-button" type="submit">Go to dashboard</button>
             </div>
-        </form>
+            }
     </div>
 </div>
-
 }

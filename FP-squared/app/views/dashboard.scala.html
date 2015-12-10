@@ -23,7 +23,9 @@
                 Team Members :
                     @if(account.team.members.size() > 0) {
                         @for(teamMember <- account.team.members) {
-                            @teamMember.userName
+                        <ul>
+                            <li style="margin-top:25px;">@teamMember.userName</li>
+                        </ul>
                         }
                     }
             </div>

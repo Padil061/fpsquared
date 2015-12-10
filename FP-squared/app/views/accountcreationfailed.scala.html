@@ -1,13 +1,18 @@
+@import helper._
+
 @main("Login") {
     <h1 style="text-align:center;">An account already exists with this user name! Try again!</h1>
-    <div class="failed-form">
-        <h1 style="text-align:center;">Sign Up!</h1>
-        <form action="@routes.Application.createUser()" method="post">
-          <div class="user-info">
-                <label>User Name: </label><input id="userName"  type="text" name="userName">
-                <label>Password: </label><input  id="password" type="password" name="password">
-                <button class="submit-button" type="submit">Create Account</button>
-            </div>
-        </form>
+    <div class="content-container">
+        <div id="failed-form">
+            <h1 style="text-align:center;">Sign Up!</h1>
+
+                @helper.form(action = routes.Application.createUser()) {
+                    <div class="user-info">
+                        <label>User Name: </label><input id="userName"  type="text" name="userName">
+                        <label>Password: </label><input  id="password" type="password" name="password">
+                        <button class="submit-button" type="submit">Create Account</button>
+                    </div>
+                }
+        </div>
     </div>
 }

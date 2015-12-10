@@ -6,6 +6,9 @@ body{
 label {
   display:block;
 }
+div {
+font-family: sans-serif;
+}
 input {
 color: black;
 border-radius: 20px
@@ -75,7 +78,7 @@ border-radius: 25px;
 bottom: 200px;
 }
 
-.failed-form{
+#failed-form{
 color:white;
 width: 250px;
 height: 350px;
@@ -84,6 +87,7 @@ background-color: #8bc7ff;
 border: 3px solid black;
 border-radius: 25px;
 text-align: center;
+margin: 0 auto;
 }
 
 #umbrella {
@@ -184,12 +188,11 @@ text-align: center;
 }
 
 #teamMembers {
-    background: #F2711C;
-    padding: 5px;
+    background: thistle;
     width: 600px;
-    height: 150px;
-    margin-top: 75px;
-    line-height: 150px;
+    height: 325px;
+    padding-right: 285px;
+    padding-top: 10px;
     color: black;
     font-weight: bold;
     font-size: 2em;
@@ -203,6 +206,9 @@ text-align: center;
 #greeting {
     text-align:center;
     height:560px;
+    margin-top: 100px;
+    font-size: 50px;
+    line-height: 3;
 }
 
 /*
