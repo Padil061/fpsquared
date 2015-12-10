@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.*;
+import play.Routes;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -288,6 +289,47 @@ public class Application extends Controller {
             Ebean.endTransaction();
         }
         return redirect(routes.Application.dashboard());
+    }
+
+    public Result saveTaskStatus(Long taskId, String status) {
+        Ebean.beginTransaction();
+        try {
+            Task task = Task.find.byId(taskId);
+
+            task.status = status;
+            task.save();
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        return ok();
+    }
+
+    public Result saveChecklistItemChecked(Long checklistItemId, Boolean checked) {
+        Ebean.beginTransaction();
+        try {
+            ChecklistItem item = ChecklistItem.find.byId(checklistItemId);
+
+            item.checked = checked;
+
+            Ebean.commitTransaction();
+        } finally {
+            Ebean.endTransaction();
+        }
+
+        return ok();
+    }
+
+    public Result javascriptRoutes() {
+        response().setContentType("text/javascript");
+        return ok(
+                Routes.javascriptRouter("jsRoutes",
+                        controllers.routes.javascript.Application.saveTaskStatus(),
+                        controllers.routes.javascript.Application.saveChecklistItemChecked()
+                )
+        );
     }
 
     public Result login() { return ok(login.render()); }
