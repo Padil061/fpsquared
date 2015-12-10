@@ -1,15 +1,12 @@
 @import helper._
-
 <nav class="navbar navbar-default">
     <ul class="container-fluid">
         <a class="navbar-brand" href="/">Colorful Umbrellas <i class="icon-umbrella"></i></a>
-
         <!-- Start of Navigation bar -->
         <ul class="nav navbar-nav">
             <li><a href="@routes.Application.index()">HOME</a></li>
             @if(session.containsKey("connected")) {
             <li><a href="@routes.Application.dashboard()">DASHBOARD</a></li>
-            @if(Account.find.where().eq("userName", session().get("connected")).findUnique() != null) {
             @defining(Account.find.where().eq("userName", session().get("connected")).findUnique()) { account =>
             <!-- team dropdown -->
             <li id="teamDropdown" class="dropdown">
@@ -25,22 +22,16 @@
                     }
                 </ul>
             </li>
-            }
-
-
             <!-- Team remodal -->
-
             <!-- This is the interface for creating a team -->
             <div class="remodal-bg">
                 <div class="remodal" data-remodal-id="teamCreationModal">
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createTeam, 'id -> "teamForm") {
                     <h1>Team Creation</h1>
-
                     <p>
                         Create a Team so you can start your Sprints! It's as simple as just picking your team name!
                     </p>
-
                     <div class="form-group">
                         <input id="teamName" type="text" placeholder="Team Name" name="name" required>
                     </div>
@@ -51,18 +42,15 @@
                     } <!-- end form -->
                 </div>
             </div>
-
             <!-- This is the interface for joining a team -->
             <div class="remodal-bg">
                 <div class="remodal" data-remodal-id="teamJoinModal">
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.joinTeam, 'id -> "joinForm") {
                     <h1>Join a team</h1>
-
                     <p>
                         Click on the dropdown to see all the teams you can join!
                     </p>
-
                     <div class="form-group">
                         <!-- All possible teams to join -->
                         <select name="id">
@@ -79,11 +67,8 @@
                     } <!-- end form -->
                 </div>
             </div>
-
             <!-- end Team remodal -->
-
             <!-- end of team dropdown -->
-
             <!-- sprint dropdown -->
             @if(account.team != null) {
             <li id="sprintDropdown" class="dropdown">
@@ -104,20 +89,16 @@
                     <li><a data-remodal-target="sprintClosureModal">Close a Sprint</a></li>
                 </ul>
             </li>
-
             <!-- Sprint remodal -->
-
             <!-- This is the interface for creating a sprint -->
             <div class="remodal-bg">
                 <div class="remodal" data-remodal-id="sprintCreationModal">
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createSprint, 'id -> "sprintForm") {
                     <h1>Create a Sprint</h1>
-
                     <p>
                         Create a Sprint for your Team.
                     </p>
-
                     <div class="form-group">
                         <input id="sprintName" type="text" placeholder="Sprint Name" name="name" required>
                         <label>
@@ -137,18 +118,15 @@
                     } <!-- end form -->
                 </div>
             </div>
-
             <!-- This is the interface for closing a sprint -->
             <div class="remodal-bg">
                 <div class="remodal" data-remodal-id="sprintClosureModal">
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.closeSprint, 'id -> "closeSprintForm") {
                     <h1>Close a sprint</h1>
-
                     <p>
                         Click on the dropdown to see all the sprints that you can close.
                     </p>
-
                     <div class="form-group">
                         <select name="id">
                             @if(account.team != null) {
@@ -166,15 +144,12 @@
                     <button id="closeSprint" type="submit" data-remodal-action="confirm" class="remodal-confirm">Close
                         Sprint
                     </button>
-
                 </div>
             </div>
-
             }
             <!-- end Sprint remodal -->
             <!-- end of sprint dropdown -->
             }
-
             @if(session.containsKey("sprintID")) {
             <!-- story dropdown -->
             <li id="storyDropdown" class="dropdown">
@@ -186,20 +161,16 @@
                     <li><a data-remodal-target="sprintClosureModal">Close a Story</a></li>
                 </ul>
             </li>
-
             <!-- Story remodal -->
-
             <!-- This is the interface for creating a Story -->
             <div class="remodal-bg">
                 <div class="remodal" data-remodal-id="storyCreationModal">
                     <button data-remodal-action="close" class="remodal-close"></button>
                     @helper.form(action = routes.Application.createStory, 'id -> "storyForm") {
                     <h1>Create a Story</h1>
-
                     <p>
                         Create a Story for your Team.
                     </p>
-
                     <div class="form-group">
                         <input id="storyName" type="text" placeholder="story Name" name="name" required>
                     </div>
@@ -213,14 +184,11 @@
             </div>
             <!-- end story remodal -->
             } <!-- end of story dropdown -->
-
         </ul> <!-- end of Navigation bar -->
-
         <!-- Login / Logout forms -->
         <form action="@routes.Application.logout()" method="get" class="navbar-form navbar-right">
             <button type="submit" class="btn btn-default">Logout</button>
         </form>
-
         } else {
         <li><a href="@routes.Application.login()">LOGIN</a></li>
     </ul>
@@ -232,7 +200,6 @@
         <button type="submit" class="btn btn-default">Login</button>
     </form>
     }  <!-- end Login / Logout forms -->
-
     </div>
     </div><!-- /.container-fluid -->
 </nav>
