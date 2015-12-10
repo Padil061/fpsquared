@@ -314,5 +314,4 @@ public class Application extends Controller {
     public Result accountCreationFailed() {
         return ok(accountcreationfailed.render());
     }
-
 }

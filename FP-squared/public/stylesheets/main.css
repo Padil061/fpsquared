@@ -263,6 +263,13 @@ max-height:550px;
 
 #show-sidebar {
 margin: 25px 40px;
+width: 150px;
+cursor: pointer;
+}
+
+#hide-sidebar {
+cursor:pointer;
+color:white;
 }
 
 /* Login */
@@ -297,7 +304,7 @@ height: 85px;
 /* Task modal */
 
 [data-remodal-id*=taskViewModal_] {
-height:800px !important;
+
 }
 
 #commentName {

@@ -7,7 +7,9 @@ $( document ).ready(function() {
         }
     });
 
-    var lastPlace;
+    function changeStatus(id) {
+        console.log(id);
+    }
 });
 
 // Event listeners
@@ -76,6 +78,8 @@ $("#taskStatus_Created").droppable({
         drop: function (event, ui) {
             event.preventDefault();
             var dropped = ui.draggable;
+
+            var taskID = dropped[0].id.slice(-1);
 
             $(dropped).detach().appendTo($("#taskStatus_Created"));
         }
